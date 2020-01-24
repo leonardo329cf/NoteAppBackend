@@ -32,19 +32,19 @@ public class User implements Serializable {
 	private Set<Note> myNotes = new HashSet<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.contributer")
+	@OneToMany(mappedBy = "id.contributor")
 	private Set<Contributor> contributions = new HashSet<>();
 	
 	
 	public User() {
 		
 	}
-	public User(String username, String password, String name, String picUrl) {
+	public User(String username, String password, String name) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
-		this.picUrl = picUrl;
+		this.picUrl = "";
 	}
 	
 	
