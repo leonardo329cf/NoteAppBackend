@@ -4,38 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.leonardocardozo.notesappbackend.entities.User;
 import com.leonardocardozo.notesappbackend.entities.utils.UserUtil;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceAlreadyExists;
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	public List<UserUtil> findAll(){
+
+	public List<UserUtil> findAll() {
 		List<UserUtil> list = new ArrayList<>();
-		for(User user : userRepository.findAll()) {
+		for (User user : userRepository.findAll()) {
 			list.add(userToUserUtil(user));
 		}
 		return list;
 	}
-	
+
 	public UserUtil findByUsername(String username) {
-		var user = userRepository.findByUsername(username);
-		var resp = userToUserUtil(user);
-		return resp;
+		try {
+			var user = userRepository.findByUsername(username);
+			var resp = userToUserUtil(user);
+			return resp;
+		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(username);
+		}
 	}
-	
+
 	public List<UserUtil> findByUsernameAndNameContaining(String username, String name) {
 		username = username.toLowerCase();
 		name = name.toLowerCase();
 		var baseList = userRepository.findByUsernameAndNameContaining(username, name);
 		List<UserUtil> resp = new ArrayList<>();
-		for(User user : baseList) {
+		for (User user : baseList) {
 			resp.add(userToUserUtil(user));
 		}
 		return resp;
@@ -43,42 +50,50 @@ public class UserService {
 
 	public UserUtil insert(User user) {
 		user.setUsername(user.getUsername().toLowerCase());
-		var resp = userToUserUtil(user);
-		user = userRepository.save(user);
-		return resp;
+		if (userRepository.findByUsername(user.getUsername()) == null) {
+			userRepository.save(user);
+			return userToUserUtil(user);
+		} else {
+			throw new ResourceAlreadyExists(user.getUsername());
+		}
 	}
 
 	public UserUtil update(String username, User user) {
-		var baseUser = userRepository.findByUsername(username);
-		
-		user.setUsername(baseUser.getUsername());
-		
-		if(user.getPassword() == null) {
-			user.setPassword(baseUser.getPassword());
+		try {
+			var baseUser = userRepository.findByUsername(username);
+			user.setUsername(baseUser.getUsername());
+
+			if (user.getPassword() == null) {
+				user.setPassword(baseUser.getPassword());
+			}
+			if (user.getName() == null) {
+				user.setName(baseUser.getName());
+			}
+			if (user.getPicUrl() == null) {
+				user.setPicUrl(baseUser.getPicUrl());
+			}
+			var resp = userToUserUtil(user);
+			baseUser = userRepository.save(user);
+			return resp;
+		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(username);
 		}
-		if(user.getName() == null) {
-			user.setName(baseUser.getName());
-		}
-		if(user.getPicUrl() == null) {
-			user.setPicUrl(baseUser.getPicUrl());
-		}
-		
-		baseUser = userRepository.save(user);
-		
-		var resp = userToUserUtil(user);
-		return resp;
 	}
-	
+
 	public String delete(String username) {
-		userRepository.deleteById(username);
-		String resp = "User with the following username was deleted: " + username;
-		return resp;
+		try {
+			userRepository.deleteById(username);
+			String resp = username + " deleted";
+			return resp;
+		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(username);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(username);
+		}
 	}
-	
+
 	private UserUtil userToUserUtil(User user) {
 		return new UserUtil(user.getUsername(), user.getName(), user.getPicUrl());
 	}
-
-	
 
 }

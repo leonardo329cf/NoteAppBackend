@@ -12,6 +12,9 @@ public class UserUtil implements Serializable{
 	private String name;
 	private String picUrl;
 	
+	public UserUtil() {
+		
+	}
 	public UserUtil(String username, String name, String picUrl) {
 		super();
 		this.username = username;
