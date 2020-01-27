@@ -4,7 +4,7 @@ public enum GeneralPermission {
 	
 	AUTHOR_RW(0),
 	PUBLIC_R(1),
-	PUBLICR_W(2);
+	PUBLIC_RW(2);
 	
 	private int code;
 

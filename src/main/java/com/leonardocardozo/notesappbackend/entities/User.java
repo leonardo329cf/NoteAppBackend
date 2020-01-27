@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -28,11 +29,11 @@ public class User implements Serializable {
 	private String picUrl;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "author")
+	@OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
 	private Set<Note> myNotes = new HashSet<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.contributor")
+	@OneToMany(mappedBy = "id.contributor", cascade = CascadeType.REMOVE)
 	private Set<Contributor> contributions = new HashSet<>();
 	
 	

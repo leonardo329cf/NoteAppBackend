@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class Note implements Serializable {
 	private User author;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.note")
+	@OneToMany(mappedBy = "id.note", cascade = CascadeType.REMOVE)
 	private Set<Contributor> contributors = new HashSet<>();
 
 	
