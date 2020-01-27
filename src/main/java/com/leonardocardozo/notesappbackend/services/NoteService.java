@@ -1,0 +1,33 @@
+package com.leonardocardozo.notesappbackend.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.leonardocardozo.notesappbackend.entities.Note;
+import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
+import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
+
+@Service
+public class NoteService {
+	
+	@Autowired
+	private NoteRepository noteRepo;
+	
+	public List<NoteUtil> findAll() {
+		var notes = noteRepo.findAll();
+		List<NoteUtil> resp = new ArrayList<>();
+		for(Note n : notes) {
+			resp.add(noteToNoteUtil(n));
+		}
+		return resp;
+	}
+
+	
+	private NoteUtil noteToNoteUtil(Note note) {
+		var userNote = new NoteUtil(note.getId(), note.getTitle(), note.getContent(), note.getGeneralPermission(), note.getAuthor().getUsername());
+		return userNote;
+	}
+}
