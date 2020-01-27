@@ -13,33 +13,42 @@ import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundE
 
 @Service
 public class NoteService {
-	
+
 	@Autowired
 	private NoteRepository noteRepo;
-	
+
 	public List<NoteUtil> findAll() {
 		var notes = noteRepo.findAll();
 		List<NoteUtil> resp = new ArrayList<>();
-		for(Note n : notes) {
+		for (Note n : notes) {
 			resp.add(noteToNoteUtil(n));
 		}
 		return resp;
 	}
 
-	
-	private NoteUtil noteToNoteUtil(Note note) {
-		var userNote = new NoteUtil(note.getId(), note.getTitle(), note.getContent(), note.getGeneralPermission(), note.getAuthor().getUsername());
-		return userNote;
-	}
-
-
 	public NoteUtil findById(Long id) {
-		Note note = noteRepo.findNoteById(id);
-		if(note != null) {
-		NoteUtil resp = noteToNoteUtil(note);
-		return resp;
+		var note = noteRepo.findNoteById(id);
+		if (note != null) {
+			NoteUtil resp = noteToNoteUtil(note);
+			return resp;
 		} else {
 			throw new ResourceNotFoundException(id.toString());
 		}
+	}
+
+	public List<NoteUtil> findByAuthor(String username) {
+		List<Note> note = noteRepo.findByAuthor(username);
+		List<NoteUtil> resp = new ArrayList<>();
+		for (Note n : note) {
+			resp.add(noteToNoteUtil(n));
+		}
+		return resp;
+	}
+	
+	//util function
+	private NoteUtil noteToNoteUtil(Note note) {
+		var userNote = new NoteUtil(note.getId(), note.getTitle(), note.getContent(), note.getGeneralPermission(),
+				note.getAuthor().getUsername());
+		return userNote;
 	}
 }

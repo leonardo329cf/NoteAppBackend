@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leonardocardozo.notesappbackend.entities.User;
+import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.UserUtil;
+import com.leonardocardozo.notesappbackend.services.NoteService;
 import com.leonardocardozo.notesappbackend.services.UserService;
 
 @RestController
@@ -26,6 +28,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private NoteService noteService;
 
 	/*
 	 * @GetMapping public ResponseEntity<List<UserUtil>> findAll() { var list =
@@ -63,6 +68,15 @@ public class UserController {
 	@DeleteMapping(value = "/{username}")
 	public ResponseEntity<String> delete(@PathVariable String username) {
 		var resp = userService.delete(username);
+		return ResponseEntity.ok().body(resp);
+	}
+	
+	//Note related requests
+	
+	@GetMapping(value = "/{username}/notes")
+	public ResponseEntity<List<NoteUtil>> findNoteByAuthor(@PathVariable String username) {
+		var user = userService.findByUsername(username);
+		var resp = noteService.findByAuthor(username);
 		return ResponseEntity.ok().body(resp);
 	}
 }
