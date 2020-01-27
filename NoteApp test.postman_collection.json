@@ -1,0 +1,644 @@
+{
+	"info": {
+		"_postman_id": "065f6fe2-5319-4a46-92ac-044deec9085f",
+		"name": "NoteApp test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User class related tests",
+			"item": [
+				{
+					"name": "Users findAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3daebe70-9bc7-4492-ab9a-5052c169d88e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"    {",
+									"        \"username\": \"alex\",",
+									"        \"name\": \"Alex Schneider\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"aley\",",
+									"        \"name\": \"Aley Kalashinikov\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"ana\",",
+									"        \"name\": \"Ana Amelia Silva\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"analucia\",",
+									"        \"name\": \"Ana Lucia Correa\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"altair\",",
+									"        \"name\": \"Alatair Rocha\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"anajulia\",",
+									"        \"name\": \"Ana Julia Hermanos\",",
+									"        \"picUrl\": \"\"",
+									"    }",
+									"];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users find 'z' and 'za'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4e449fb-fd5e-44d3-8290-8e60e39c04cf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Empty array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users?username=z&name=za",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "z"
+								},
+								{
+									"key": "name",
+									"value": "za"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users find ' ' and 'ana j'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4e449fb-fd5e-44d3-8290-8e60e39c04cf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"    {",
+									"        \"username\": \"anajulia\",",
+									"        \"name\": \"Ana Julia Hermanos\",",
+									"        \"picUrl\": \"\"",
+									"    }",
+									"];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users?name=ana j",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "z",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "ana j"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users find 'ale' and ' '",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4e449fb-fd5e-44d3-8290-8e60e39c04cf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"    {",
+									"        \"username\": \"alex\",",
+									"        \"name\": \"Alex Schneider\",",
+									"        \"picUrl\": \"\"",
+									"    },",
+									"    {",
+									"        \"username\": \"aley\",",
+									"        \"name\": \"Aley Kalashinikov\",",
+									"        \"picUrl\": \"\"",
+									"    }",
+									"    ];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users?username=ale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "ale"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User findByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/leo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User insert leo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"leo\",\n\t\"password\" : \"123\",\n\t\"name\" : \"Leonardo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User insert alex(repeted)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a45bb2e8-cc4a-4a78-9154-b603977b3b13",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"alex\",\n\t\"password\" : \"123\",\n\t\"name\" : \"Alex Silva\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User update ana picUrl",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8917927-5834-4a2e-a92b-5cfe9578e0d2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"picurl.com\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"picUrl\": \"picurl.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/ana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User update inexisting user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8917927-5834-4a2e-a92b-5cfe9578e0d2",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"picUrl\": \"picurl.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/jair",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"jair"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User update ana name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87d0c5b6-d4b3-47b4-b5be-d9f398b73291",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Ana Amelia Flores\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Ana Amelia Flores\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/ana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User delete analucia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5b815c2-7bb8-4bc3-a151-36d384ad0a48",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/analucia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"analucia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User delete inexisting user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74a0c88f-8787-43aa-a7fb-ba1427f2a4c5",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/leoncio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leoncio"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
