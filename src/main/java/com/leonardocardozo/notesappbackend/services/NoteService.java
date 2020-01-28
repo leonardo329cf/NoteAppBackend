@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
+import com.leonardocardozo.notesappbackend.repositories.UserRepository;
 import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -16,6 +17,9 @@ public class NoteService {
 
 	@Autowired
 	private NoteRepository noteRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	public List<NoteUtil> findAll() {
 		var notes = noteRepo.findAll();
@@ -46,9 +50,26 @@ public class NoteService {
 		return resp;
 	}
 	
+	public NoteUtil insert(String username, Note note) {
+		var author = userRepo.findByUsername(username);
+		if(author != null) {
+			note.setAuthor(author);
+			noteRepo.save(note);
+			var resp = noteToNoteUtil(note);
+			return resp;
+		} else {
+			throw new ResourceNotFoundException(username);
+		}
+		
+		
+	}
+	
 	//util function
 	private NoteUtil noteToNoteUtil(Note note) {
-		var userNote = new NoteUtil(note.getId(), note.getTitle(), note.getContent(), note.getGeneralPermission(),
+		var userNote = new NoteUtil(note.getId(),
+				note.getTitle(),
+				note.getContent(),
+				note.getGeneralPermission(),
 				note.getAuthor().getUsername());
 		return userNote;
 	}

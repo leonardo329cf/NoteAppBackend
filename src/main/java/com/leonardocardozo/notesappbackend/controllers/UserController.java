@@ -2,6 +2,7 @@ package com.leonardocardozo.notesappbackend.controllers;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.User;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.UserUtil;
@@ -80,5 +83,18 @@ public class UserController {
 		userService.findByUsername(username);
 		var resp = noteService.findByAuthorAndTitle(username, title);
 		return ResponseEntity.ok().body(resp);
+	}
+	
+	@PostMapping(value = "/{username}/notes")
+	public ResponseEntity<NoteUtil> insertNote(@PathVariable String username, @RequestBody Note note) {
+		NoteUtil resp = noteService.insert(username, note);
+		
+		String toBeReplaced = "/users/" + username + "/notes";
+		String replacement = "/notes/" + resp.getId().toString();
+		String baseUri = fromCurrentRequest().path("").buildAndExpand().toUriString();
+		baseUri = baseUri.replace(toBeReplaced, replacement);
+		
+		URI uri = UriComponentsBuilder.newInstance().path(baseUri).buildAndExpand().toUri();
+		return ResponseEntity.created(uri).body(resp);
 	}
 }

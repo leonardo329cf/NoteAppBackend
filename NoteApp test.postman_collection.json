@@ -309,7 +309,21 @@
 					"response": []
 				},
 				{
-					"name": "User findByUsername",
+					"name": "User findByUsername inexist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "caf9f6f8-c4ad-45f5-a204-8723986ed559",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -330,6 +344,29 @@
 				},
 				{
 					"name": "User insert leo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"username\": \"leo\",",
+									"        \"name\": \"Leonardo\",",
+									"        \"picUrl\": null",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -358,6 +395,26 @@
 							"port": "8080",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User findByUsername exist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/leo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leo"
 							]
 						}
 					},
@@ -980,6 +1037,166 @@
 									"key": "title",
 									"value": "canyou"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note insert by user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 6,",
+									"        \"title\": \"Buy cheese\",",
+									"        \"content\": \"buy cheese\",",
+									"        \"generalPermission\": 0,",
+									"        \"author\": \"ana\",",
+									"        \"contributors\": null",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Buy cheese\",\n    \"content\": \"buy cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/ana/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note insert by user Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Buy cheese\",\n    \"content\": \"buy cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/leonacio/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leonacio",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findById just created",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 6,",
+									"        \"title\": \"Buy cheese\",",
+									"        \"content\": \"buy cheese\",",
+									"        \"generalPermission\": 0,",
+									"        \"author\": \"ana\",",
+									"        \"contributors\": null",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"6"
 							]
 						}
 					},
