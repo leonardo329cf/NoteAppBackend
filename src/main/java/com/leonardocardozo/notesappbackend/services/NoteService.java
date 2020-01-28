@@ -35,9 +35,10 @@ public class NoteService {
 			throw new ResourceNotFoundException(id.toString());
 		}
 	}
-
-	public List<NoteUtil> findByAuthor(String username) {
-		List<Note> note = noteRepo.findByAuthor(username);
+	
+	public List<NoteUtil> findByAuthorAndTitle(String username, String title) {
+		title = title.toLowerCase();
+		List<Note> note = noteRepo.findByAuthorAndTitle(username, title);
 		List<NoteUtil> resp = new ArrayList<>();
 		for (Note n : note) {
 			resp.add(noteToNoteUtil(n));

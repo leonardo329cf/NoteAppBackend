@@ -90,7 +90,7 @@
 					"response": []
 				},
 				{
-					"name": "Users find 'z' and 'za'",
+					"name": "Users find 'z' or 'za'",
 					"event": [
 						{
 							"listen": "test",
@@ -156,7 +156,7 @@
 					"response": []
 				},
 				{
-					"name": "Users find ' ' and 'ana j'",
+					"name": "Users find ' ' or 'ana j'",
 					"event": [
 						{
 							"listen": "test",
@@ -230,7 +230,7 @@
 					"response": []
 				},
 				{
-					"name": "Users find 'ale' and ' '",
+					"name": "Users find 'ale' or ' '",
 					"event": [
 						{
 							"listen": "test",
@@ -880,6 +880,106 @@
 								"users",
 								"leoncio",
 								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findByAuthorAndTItle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"    {",
+									"        \"id\": 4,",
+									"        \"title\": \"Can you edit this note?\",",
+									"        \"content\": \"can you edit?\",",
+									"        \"generalPermission\": 2,",
+									"        \"author\": \"ana\",",
+									"        \"contributors\": null",
+									"    }",
+									"];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/ana/notes?title=can you",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "can you"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findByAuthorAndTItle inexisting title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/ana/notes?title=canyou",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "canyou"
+								}
 							]
 						}
 					},

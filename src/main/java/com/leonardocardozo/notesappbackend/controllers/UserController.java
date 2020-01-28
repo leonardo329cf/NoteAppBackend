@@ -74,9 +74,11 @@ public class UserController {
 	//Note related requests
 	
 	@GetMapping(value = "/{username}/notes")
-	public ResponseEntity<List<NoteUtil>> findNoteByAuthor(@PathVariable String username) {
-		var user = userService.findByUsername(username);
-		var resp = noteService.findByAuthor(username);
+	public ResponseEntity<List<NoteUtil>> findByAuthorAndTitle(
+			@PathVariable String username,
+			@RequestParam(value = "title", required = false, defaultValue = "") String title) {
+		userService.findByUsername(username);
+		var resp = noteService.findByAuthorAndTitle(username, title);
 		return ResponseEntity.ok().body(resp);
 	}
 }

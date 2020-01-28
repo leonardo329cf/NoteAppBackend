@@ -14,4 +14,7 @@ public interface NoteRepository extends JpaRepository<Note, Long>{
 
 	@Query(value = "SELECT * FROM TB_NOTE WHERE AUTHOR_USERNAME = ?1", nativeQuery = true)
 	public List<Note> findByAuthor(String username);
+
+	@Query(value = "SELECT * FROM TB_NOTE WHERE AUTHOR_USERNAME = ?1 AND LOWER(TITLE) LIKE %?2%", nativeQuery = true)
+	public List<Note> findByAuthorAndTitle(String username, String title);
 }
