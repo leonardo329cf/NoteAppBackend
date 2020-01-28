@@ -1106,7 +1106,7 @@
 					"response": []
 				},
 				{
-					"name": "Note insert by user Copy",
+					"name": "Note insert by inexisting user",
 					"event": [
 						{
 							"listen": "test",
@@ -1197,6 +1197,189 @@
 							"path": [
 								"notes",
 								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"6 deleted\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes delete inexisting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"    \"id\": 1,",
+									"    \"title\": \"bought cheese\",",
+									"    \"content\": \"bought cheese\",",
+									"    \"generalPermission\": 0,",
+									"    \"author\": \"alex\",",
+									"    \"contributors\": null",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"bought cheese\",\n    \"content\": \"bought cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note update inexisting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"bought cheese\",\n    \"content\": \"bought cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"20"
 							]
 						}
 					},

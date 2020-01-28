@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.leonardocardozo.notesappbackend.entities.Note;
@@ -85,6 +86,18 @@ public class NoteService {
 			var resp = noteToNoteUtil(note);
 			return resp;
 		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(id.toString());
+		}
+	}
+	
+	public String delete(Long id) {
+		try {
+			noteRepo.deleteById(id);
+			String resp = id.toString() + " deleted";
+			return resp;
+		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(id.toString());
+		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id.toString());
 		}
 	}
