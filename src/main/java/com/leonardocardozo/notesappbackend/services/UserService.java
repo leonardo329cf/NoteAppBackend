@@ -72,6 +72,12 @@ public class UserService {
 			if (user.getPicUrl() == null) {
 				user.setPicUrl(baseUser.getPicUrl());
 			}
+			if (user.getNotes() == null) {
+				user.getNotes().addAll(baseUser.getNotes());
+			}
+			if (user.getContributions() == null) {
+				user.getContributions().addAll(baseUser.getContributions());
+			}
 			var resp = userToUserUtil(user);
 			baseUser = userRepository.save(user);
 			return resp;

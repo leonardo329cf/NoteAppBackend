@@ -60,8 +60,6 @@ public class NoteService {
 		} else {
 			throw new ResourceNotFoundException(username);
 		}
-		
-		
 	}
 	
 	//util function
