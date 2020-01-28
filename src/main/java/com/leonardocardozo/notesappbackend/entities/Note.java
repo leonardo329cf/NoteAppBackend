@@ -112,4 +112,9 @@ public class Note implements Serializable {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Note [id=" + id + ", title=" + title + ", content=" + content + ", generalPermission="
+				+ generalPermission + ", author=" + author + ", contributors=" + contributors + "]";
+	}
 }

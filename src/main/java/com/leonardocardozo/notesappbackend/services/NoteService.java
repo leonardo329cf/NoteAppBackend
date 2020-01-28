@@ -62,6 +62,33 @@ public class NoteService {
 		}
 	}
 	
+	public NoteUtil update(Long id, Note note) {
+		try {
+			Note baseNote = noteRepo.findNoteById(id);
+			note.setId(baseNote.getId());
+			if(note.getTitle() == null) {
+				note.setTitle(baseNote.getTitle());
+			}
+			if(note.getContent() == null) {
+				note.setContent(baseNote.getContent());
+			}
+			if(note.getGeneralPermission() == null) {
+				note.setGeneralPermission(baseNote.getGeneralPermission());
+			}
+			if(note.getAuthor() == null) {
+				note.setAuthor(baseNote.getAuthor());
+			}
+			if(note.getContributors() == null) {
+				note.getContributors().addAll(baseNote.getContributors());
+			}
+			noteRepo.save(note);
+			var resp = noteToNoteUtil(note);
+			return resp;
+		} catch (NullPointerException e) {
+			throw new ResourceNotFoundException(id.toString());
+		}
+	}
+	
 	//util function
 	private NoteUtil noteToNoteUtil(Note note) {
 		var userNote = new NoteUtil(note.getId(),

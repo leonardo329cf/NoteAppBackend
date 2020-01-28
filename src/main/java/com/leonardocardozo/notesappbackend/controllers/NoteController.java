@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.services.NoteService;
 
@@ -27,11 +30,15 @@ public class NoteController implements Serializable {
 		return ResponseEntity.ok().body(resp);
 	}
 
-	@GetMapping
-	@RequestMapping(value = "/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<NoteUtil> findById(@PathVariable Long id) {
 		NoteUtil resp = noteService.findById(id);
 		return ResponseEntity.ok().body(resp);
 	}
 
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<NoteUtil> update(@PathVariable Long id, @RequestBody Note note) {
+		var resp = noteService.update(id, note);
+		return ResponseEntity.ok().body(resp);
+	}
 }
