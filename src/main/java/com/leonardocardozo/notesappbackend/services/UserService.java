@@ -20,18 +20,19 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public List<UserUtil> findAll() {
-		List<UserUtil> list = new ArrayList<>();
+		List<UserUtil> userUtilList = new ArrayList<>();
 		for (User user : userRepository.findAll()) {
-			list.add(userToUserUtil(user));
+			UserUtil userUtil = new UserUtil().userToUserUtil(user);
+			userUtilList.add(userUtil);
 		}
-		return list;
+		return userUtilList;
 	}
 
 	public UserUtil findByUsername(String username) {
 		try {
 			var user = userRepository.findByUsername(username);
-			var resp = userToUserUtil(user);
-			return resp;
+			UserUtil userUtil = new UserUtil().userToUserUtil(user);
+			return userUtil;
 		} catch (NullPointerException e) {
 			throw new ResourceNotFoundException(username);
 		}
@@ -40,19 +41,21 @@ public class UserService {
 	public List<UserUtil> findByUsernameAndNameContaining(String username, String name) {
 		username = username.toLowerCase();
 		name = name.toLowerCase();
-		var baseList = userRepository.findByUsernameAndNameContaining(username, name);
-		List<UserUtil> resp = new ArrayList<>();
-		for (User user : baseList) {
-			resp.add(userToUserUtil(user));
+		var userList = userRepository.findByUsernameAndNameContaining(username, name);
+		List<UserUtil> userUtilList = new ArrayList<>();
+		for (User user : userList) {
+			UserUtil userUtil = new UserUtil().userToUserUtil(user);
+			userUtilList.add(userUtil);
 		}
-		return resp;
+		return userUtilList;
 	}
 
 	public UserUtil insert(User user) {
 		user.setUsername(user.getUsername().toLowerCase());
 		if (userRepository.findByUsername(user.getUsername()) == null) {
-			userRepository.save(user);
-			return userToUserUtil(user);
+			user = userRepository.save(user);
+			UserUtil userUtil = new UserUtil().userToUserUtil(user);
+			return userUtil;
 		} else {
 			throw new ResourceAlreadyExists(user.getUsername());
 		}
@@ -78,9 +81,9 @@ public class UserService {
 			if (user.getContributions() == null) {
 				user.getContributions().addAll(baseUser.getContributions());
 			}
-			var resp = userToUserUtil(user);
 			baseUser = userRepository.save(user);
-			return resp;
+			UserUtil userUtil = new UserUtil().userToUserUtil(baseUser);
+			return userUtil;
 		} catch (NullPointerException e) {
 			throw new ResourceNotFoundException(username);
 		}
@@ -98,8 +101,7 @@ public class UserService {
 		}
 	}
 
-	private UserUtil userToUserUtil(User user) {
-		return new UserUtil(user.getUsername(), user.getName(), user.getPicUrl());
-	}
+	//util conversion
+	
 
 }

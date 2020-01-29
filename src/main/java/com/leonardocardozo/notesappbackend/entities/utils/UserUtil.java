@@ -2,6 +2,8 @@ package com.leonardocardozo.notesappbackend.entities.utils;
 
 import java.io.Serializable;
 
+import com.leonardocardozo.notesappbackend.entities.User;
+
 
 public class UserUtil implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -45,5 +47,10 @@ public class UserUtil implements Serializable{
 
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
+	}
+	
+	
+	public UserUtil userToUserUtil(User user) {
+		return new UserUtil(user.getUsername(), user.getName(), user.getPicUrl());
 	}
 }

@@ -27,18 +27,19 @@ public class NoteService {
 
 	public List<NoteUtil> findAll() {
 		var notes = noteRepo.findAll();
-		List<NoteUtil> resp = new ArrayList<>();
-		for (Note n : notes) {
-			resp.add(noteToNoteUtil(n));
+		List<NoteUtil> noteUtilList = new ArrayList<>();
+		for (Note note : notes) {
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
+			noteUtilList.add(noteUtil);
 		}
-		return resp;
+		return noteUtilList;
 	}
 
 	public NoteUtil findById(Long id) {
 		var note = noteRepo.findNoteById(id);
 		if (note != null) {
-			NoteUtil resp = noteToNoteUtil(note);
-			return resp;
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
+			return noteUtil;
 		} else {
 			throw new ResourceNotFoundException(id.toString());
 		}
@@ -46,12 +47,13 @@ public class NoteService {
 	
 	public List<NoteUtil> findByAuthorAndTitle(String username, String title) {
 		title = title.toLowerCase();
-		List<Note> note = noteRepo.findByAuthorAndTitle(username, title);
-		List<NoteUtil> resp = new ArrayList<>();
-		for (Note n : note) {
-			resp.add(noteToNoteUtil(n));
+		List<Note> notes = noteRepo.findByAuthorAndTitle(username, title);
+		List<NoteUtil> noteUtilList = new ArrayList<>();
+		for (Note note : notes) {
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
+			noteUtilList.add(noteUtil);;
 		}
-		return resp;
+		return noteUtilList;
 	}
 	
 	public NoteUtil insert(String username, Note note) {
@@ -59,8 +61,8 @@ public class NoteService {
 		if(author != null) {
 			note.setAuthor(author);
 			noteRepo.save(note);
-			var resp = noteToNoteUtil(note);
-			return resp;
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
+			return noteUtil;
 		} else {
 			throw new ResourceNotFoundException(username);
 		}
@@ -86,8 +88,8 @@ public class NoteService {
 				note.getContributors().addAll(baseNote.getContributors());
 			}
 			noteRepo.save(note);
-			var resp = noteToNoteUtil(note);
-			return resp;
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
+			return noteUtil;
 		} catch (NullPointerException e) {
 			throw new ResourceNotFoundException(id.toString());
 		}
@@ -106,19 +108,5 @@ public class NoteService {
 	}
 	
 	//util function
-	private NoteUtil noteToNoteUtil(Note note) {
-		NoteUtil userNote = new NoteUtil(note.getId(),
-				note.getTitle(),
-				note.getContent(),
-				note.getGeneralPermission(),
-				note.getAuthor().getUsername());
-		for(Contributor c : note.getContributors()) {
-			ContributorUtil con = new ContributorUtil(
-					c.getContributor().getName(),
-					c.getNote().getId(),
-					c.getPermission());
-			userNote.getContributors().add(con);
-		}
-		return userNote;
-	}
+
 }
