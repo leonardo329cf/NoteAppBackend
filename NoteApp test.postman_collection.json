@@ -1584,6 +1584,214 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "insert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"contributorUsername\": \"Ana Lucia Correa\",",
+									"        \"noteId\": 1,",
+									"        \"noteAuthor\": \"alex\",",
+									"        \"noteTitle\": \"Todo\",",
+									"        \"contributorPermission\": 0",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1/contributions?username=analucia&generalPermission=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1",
+								"contributions"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "analucia"
+								},
+								{
+									"key": "generalPermission",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByNoteId just inserted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"        {",
+									"            \"contributorUsername\": \"Ana Julia Hermanos\",",
+									"            \"noteId\": 1,",
+									"            \"noteAuthor\": \"alex\",",
+									"            \"noteTitle\": \"Todo\",",
+									"            \"contributorPermission\": 0",
+									"        },",
+									"        {",
+									"            \"contributorUsername\": \"Alatair Rocha\",",
+									"            \"noteId\": 1,",
+									"            \"noteAuthor\": \"alex\",",
+									"            \"noteTitle\": \"Todo\",",
+									"            \"contributorPermission\": 1",
+									"        },",
+									"        {",
+									"            \"contributorUsername\": \"Ana Lucia Correa\",",
+									"            \"noteId\": 1,",
+									"            \"noteAuthor\": \"alex\",",
+									"            \"noteTitle\": \"Todo\",",
+									"            \"contributorPermission\": 0",
+									"        }",
+									"    ];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1/contributions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1",
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert forbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1/contributions?username=aley&generalPermission=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1",
+								"contributions"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aley"
+								},
+								{
+									"key": "generalPermission",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert conflict",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/3/contributions?username=alex&generalPermission=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"3",
+								"contributions"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "alex"
+								},
+								{
+									"key": "generalPermission",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

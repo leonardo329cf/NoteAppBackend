@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.leonardocardozo.notesappbackend.entities.Contribution;
+import com.leonardocardozo.notesappbackend.entities.enums.ContributorPermission;
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.repositories.ContributorRepository;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceAlreadyExists;
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceDoesNotPermitException;
 import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -21,7 +24,7 @@ public class ContributionService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private NoteRepository noteRepo;
 
@@ -48,7 +51,7 @@ public class ContributionService {
 			throw new ResourceNotFoundException(username);
 		}
 	}
-	
+
 	public List<ContributionUtil> findByNoteId(Long noteId) {
 		if (noteRepo.findNoteById(noteId) != null) {
 			List<Contribution> contlist = contRepo.findByNoteId(noteId);
@@ -60,6 +63,29 @@ public class ContributionService {
 			return contUtilList;
 		} else {
 			throw new ResourceNotFoundException(noteId.toString());
+		}
+	}
+
+	public ContributionUtil insert(String username, Long noteId, Integer contributionPermission) {
+		System.out.println(contRepo.findByUsernameAndNoteId(username, noteId));
+		if (noteRepo.findById(noteId).orElseThrow(() -> new ResourceNotFoundException(noteId.toString()))
+				.getContributors().size() >= 3) {
+			throw new ResourceDoesNotPermitException("Number of contributors superior to 3");
+		} 
+		else if (!(contRepo.findByUsernameAndNoteId(username, noteId).isEmpty())) {
+			throw new ResourceAlreadyExists(noteId.toString() + " and username, " + username);
+		} else {
+			Contribution contToBeSaved = new Contribution();
+			contToBeSaved.setNote(noteRepo.findNoteById(noteId));
+			contToBeSaved.setContributor(userRepo.findByUsername(username));
+			if (contributionPermission <= 0 || contributionPermission >= 1) {
+				contToBeSaved.setPermission(ContributorPermission.CONTRIBUTOR_READ);
+			} else {
+				contToBeSaved.setPermission(ContributorPermission.valueOf(contributionPermission));
+			}
+			contRepo.save(contToBeSaved);
+			ContributionUtil contUtil = new ContributionUtil().contToContUtil(contToBeSaved);
+			return contUtil;
 		}
 	}
 }

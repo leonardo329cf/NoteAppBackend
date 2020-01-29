@@ -75,8 +75,8 @@ public class Note implements Serializable {
 	public Integer getGeneralPermission() {
 		return generalPermission;
 	}
-	public void setGeneralPermission(Integer generalPermission) {
-		this.generalPermission = generalPermission;
+	public void setGeneralPermission(GeneralPermission generalPermission) {
+		this.generalPermission = generalPermission.getCode();
 	}
 	public User getAuthor() {
 		return author;

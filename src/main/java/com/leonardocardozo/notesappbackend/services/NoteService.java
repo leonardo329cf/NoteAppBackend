@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
+import com.leonardocardozo.notesappbackend.entities.enums.GeneralPermission;
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
@@ -79,7 +80,7 @@ public class NoteService {
 				note.setContent(baseNote.getContent());
 			}
 			if(note.getGeneralPermission() == null) {
-				note.setGeneralPermission(baseNote.getGeneralPermission());
+				note.setGeneralPermission(GeneralPermission.valueOf(baseNote.getGeneralPermission()));
 			}
 			if(note.getAuthor() == null) {
 				note.setAuthor(baseNote.getAuthor());

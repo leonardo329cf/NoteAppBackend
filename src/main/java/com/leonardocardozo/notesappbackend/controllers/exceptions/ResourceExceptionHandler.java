@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.leonardocardozo.notesappbackend.services.exceptions.ResourceAlreadyExists;
 import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
-
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceDoesNotPermitException;
 
 
 @ControllerAdvice
@@ -29,6 +29,14 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandardError> resourceAlreadyExists(ResourceAlreadyExists e, HttpServletRequest request){
 		String error = "Conflict with existing resource";
 		HttpStatus status = HttpStatus.CONFLICT;
+		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(ResourceDoesNotPermitException.class)
+	public ResponseEntity<StandardError> ResourceDoesNotPermitException(ResourceDoesNotPermitException e, HttpServletRequest request){
+		String error = "Resource does not permit";
+		HttpStatus status = HttpStatus.FORBIDDEN;
 		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
