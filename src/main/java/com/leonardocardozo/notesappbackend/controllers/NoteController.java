@@ -73,4 +73,14 @@ public class NoteController implements Serializable {
 		var resp = contService.insert(username, id, contributionPermission);
 		return ResponseEntity.ok().body(resp);
 	}
+	
+	@PutMapping(value = "/{id}/contributions")
+	public ResponseEntity<ContributionUtil> updateContribution(
+			@PathVariable Long id,
+			@RequestParam(name = "username", required = true) String username,
+			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission
+			){
+		var resp = contService.update(username, id, contributionPermission);
+		return ResponseEntity.ok().body(resp);
+	}
 }

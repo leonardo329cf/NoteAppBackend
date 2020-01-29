@@ -67,14 +67,28 @@ public class ContributionService {
 	}
 
 	public ContributionUtil insert(String username, Long noteId, Integer contributionPermission) {
-		System.out.println(contRepo.findByUsernameAndNoteId(username, noteId));
 		if (noteRepo.findById(noteId).orElseThrow(() -> new ResourceNotFoundException(noteId.toString()))
 				.getContributors().size() >= 3) {
 			throw new ResourceDoesNotPermitException("Number of contributors superior to 3");
-		} 
-		else if (!(contRepo.findByUsernameAndNoteId(username, noteId).isEmpty())) {
+		} else if (!(contRepo.findByUsernameAndNoteId(username, noteId).isEmpty())) {
 			throw new ResourceAlreadyExists(noteId.toString() + " and username, " + username);
 		} else {
+			Contribution contToBeSaved = new Contribution();
+			contToBeSaved.setNote(noteRepo.findNoteById(noteId));
+			contToBeSaved.setContributor(userRepo.findByUsername(username));
+			if (contributionPermission < 0 || contributionPermission > 1) {
+				contToBeSaved.setPermission(ContributorPermission.CONTRIBUTOR_READ);
+			} else {
+				contToBeSaved.setPermission(ContributorPermission.valueOf(contributionPermission));
+			}
+			contRepo.save(contToBeSaved);
+			ContributionUtil contUtil = new ContributionUtil().contToContUtil(contToBeSaved);
+			return contUtil;
+		}
+	}
+
+	public ContributionUtil update(String username, Long noteId, Integer contributionPermission) {
+		if (!(contRepo.findByUsernameAndNoteId(username, noteId).isEmpty())) {
 			Contribution contToBeSaved = new Contribution();
 			contToBeSaved.setNote(noteRepo.findNoteById(noteId));
 			contToBeSaved.setContributor(userRepo.findByUsername(username));
@@ -86,6 +100,9 @@ public class ContributionService {
 			contRepo.save(contToBeSaved);
 			ContributionUtil contUtil = new ContributionUtil().contToContUtil(contToBeSaved);
 			return contUtil;
+			
+		} else {
+			throw new ResourceNotFoundException(noteId.toString() + " and username, " + username);
 		}
 	}
 }
