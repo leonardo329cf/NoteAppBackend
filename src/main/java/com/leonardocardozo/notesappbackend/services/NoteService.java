@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.leonardocardozo.notesappbackend.entities.Contributor;
+import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
-import com.leonardocardozo.notesappbackend.entities.utils.ContributorUtil;
+import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leonardocardozo.notesappbackend.entities.Contributor;
+import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
 
 
@@ -16,7 +16,7 @@ public class NoteUtil implements Serializable {
 	private String content;
 	private Integer generalPermission;
 	private String author;
-	private List<ContributorUtil> contributors = new ArrayList<>();
+	private List<ContributionUtil> contributors = new ArrayList<>();
 	
 	
 	public NoteUtil() {
@@ -62,7 +62,7 @@ public class NoteUtil implements Serializable {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public List<ContributorUtil> getContributors() {
+	public List<ContributionUtil> getContributors() {
 		return contributors;
 	}
 	
@@ -73,8 +73,8 @@ public class NoteUtil implements Serializable {
 				note.getContent(),
 				note.getGeneralPermission(),
 				note.getAuthor().getUsername());
-		for(Contributor cont : note.getContributors()) {
-			ContributorUtil contUtil = new ContributorUtil().contToContUtil(cont);
+		for(Contribution cont : note.getContributors()) {
+			ContributionUtil contUtil = new ContributionUtil().contToContUtil(cont);
 			userNote.getContributors().add(contUtil);
 		}
 		return userNote;

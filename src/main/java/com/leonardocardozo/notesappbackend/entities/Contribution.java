@@ -11,7 +11,7 @@ import com.leonardocardozo.notesappbackend.entities.pk.ContributorPK;
 
 @Entity
 @Table(name = "tbContributor")
-public class Contributor implements Serializable {
+public class Contribution implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
@@ -20,9 +20,9 @@ public class Contributor implements Serializable {
 	private Integer contributorPermission;
 	
 	
-	public Contributor() {
+	public Contribution() {
 	}
-	public Contributor(User contributor, Note note, ContributorPermission contributorPermission) {
+	public Contribution(User contributor, Note note, ContributorPermission contributorPermission) {
 		super();
 		id.setContributor(contributor);
 		id.setNotes(note);
@@ -65,7 +65,7 @@ public class Contributor implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Contributor other = (Contributor) obj;
+		Contribution other = (Contribution) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

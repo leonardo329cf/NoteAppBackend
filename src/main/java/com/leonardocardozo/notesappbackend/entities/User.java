@@ -34,7 +34,7 @@ public class User implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.contributor", cascade = CascadeType.REMOVE)
-	private Set<Contributor> contributions = new HashSet<>();
+	private Set<Contribution> contributions = new HashSet<>();
 	
 	
 	public User() {
@@ -84,7 +84,7 @@ public class User implements Serializable {
 
 	public Set<Note> getContributions(){
 		Set<Note> set = new HashSet<>();
-		for(Contributor x : contributions) {
+		for(Contribution x : contributions) {
 			set.add((x.getNote()));
 		}
 		return set;

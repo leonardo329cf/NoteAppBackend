@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.leonardocardozo.notesappbackend.entities.Contributor;
+import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.User;
 import com.leonardocardozo.notesappbackend.entities.enums.ContributorPermission;
@@ -48,10 +48,10 @@ public class Config implements CommandLineRunner{
 		
 		noteRepo.saveAll(Arrays.asList(note1, note2, note3, note4, note5));
 
-		Contributor con1 = new Contributor(user2, note2, ContributorPermission.CONTRIBUTOR_READ);
-		Contributor con2 = new Contributor(user1, note3, ContributorPermission.CONTRIBUTOR_WRITE);
-		Contributor con3 = new Contributor(user6, note1, ContributorPermission.CONTRIBUTOR_READ);
-		Contributor con4 = new Contributor(user5, note1, ContributorPermission.CONTRIBUTOR_WRITE);
+		Contribution con1 = new Contribution(user2, note2, ContributorPermission.CONTRIBUTOR_READ);
+		Contribution con2 = new Contribution(user1, note3, ContributorPermission.CONTRIBUTOR_WRITE);
+		Contribution con3 = new Contribution(user6, note1, ContributorPermission.CONTRIBUTOR_READ);
+		Contribution con4 = new Contribution(user5, note1, ContributorPermission.CONTRIBUTOR_WRITE);
 
 		contributorRepo.saveAll(Arrays.asList(con1, con2, con3,con4));
 	}
