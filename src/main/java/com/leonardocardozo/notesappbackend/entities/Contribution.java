@@ -10,7 +10,7 @@ import com.leonardocardozo.notesappbackend.entities.enums.ContributorPermission;
 import com.leonardocardozo.notesappbackend.entities.pk.ContributorPK;
 
 @Entity
-@Table(name = "tbContributor")
+@Table(name = "tbContribution")
 public class Contribution implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

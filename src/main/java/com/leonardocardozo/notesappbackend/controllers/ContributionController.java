@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
-import com.leonardocardozo.notesappbackend.services.ContributorService;
+import com.leonardocardozo.notesappbackend.services.ContributionService;
 
 @RestController
 @RequestMapping(value = "/contributions")
 public class ContributionController {
 
 	@Autowired
-	private ContributorService contributorService;
+	private ContributionService contributionService;
 	
 	@GetMapping
 	public List<ContributionUtil> findAll() {
-		var contUtilList = contributorService.findAll();
+		var contUtilList = contributionService.findAll();
 		return contUtilList;
 	}
 }

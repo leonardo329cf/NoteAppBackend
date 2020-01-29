@@ -1503,6 +1503,89 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "findByUsername",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = [",
+									"        {",
+									"            \"contributorUsername\": \"Ana Julia Hermanos\",",
+									"            \"noteId\": 1,",
+									"            \"noteAuthor\": \"alex\",",
+									"            \"noteTitle\": \"Todo\",",
+									"            \"contributorPermission\": 0",
+									"        }",
+									"    ];",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/anajulia/contributions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"anajulia",
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByUsername inexist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/leoncio/contributions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leoncio",
+								"contributions"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

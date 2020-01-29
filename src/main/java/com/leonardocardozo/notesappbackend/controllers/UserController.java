@@ -20,8 +20,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.User;
+import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.UserUtil;
+import com.leonardocardozo.notesappbackend.services.ContributionService;
 import com.leonardocardozo.notesappbackend.services.NoteService;
 import com.leonardocardozo.notesappbackend.services.UserService;
 
@@ -34,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private NoteService noteService;
+	
+	@Autowired
+	private ContributionService contService;
 
 	/*
 	 * @GetMapping public ResponseEntity<List<UserUtil>> findAll() { var list =
@@ -63,7 +68,8 @@ public class UserController {
 	}
 
 	@PutMapping(value = "/{username}")
-	public ResponseEntity<UserUtil> update(@PathVariable String username, @RequestBody User user) {
+	public ResponseEntity<UserUtil> update(@PathVariable String username,
+			@RequestBody User user) {
 		var resp = userService.update(username, user);
 		return ResponseEntity.ok().body(resp);
 	}
@@ -86,7 +92,8 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/{username}/notes")
-	public ResponseEntity<NoteUtil> insertNote(@PathVariable String username, @RequestBody Note note) {
+	public ResponseEntity<NoteUtil> insertNote(@PathVariable String username,
+			@RequestBody Note note) {
 		NoteUtil resp = noteService.insert(username, note);
 		
 		String toBeReplaced = "/users/" + username + "/notes";
@@ -96,5 +103,15 @@ public class UserController {
 		
 		URI uri = UriComponentsBuilder.newInstance().path(baseUri).buildAndExpand().toUri();
 		return ResponseEntity.created(uri).body(resp);
+	}
+	
+	//Contribution related requests
+	
+	@GetMapping(value = "/{username}/contributions")
+	public ResponseEntity<List<ContributionUtil>> findContributions(
+			@PathVariable String username
+			){
+		List<ContributionUtil> contUtilList = contService.findByUsername(username);
+		return ResponseEntity.ok().body(contUtilList);
 	}
 }
