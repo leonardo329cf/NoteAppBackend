@@ -1,10 +1,7 @@
 package com.leonardocardozo.notesappbackend.entities.utils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
 
 
@@ -16,7 +13,6 @@ public class NoteUtil implements Serializable {
 	private String content;
 	private Integer generalPermission;
 	private String author;
-	private List<ContributionUtil> contributors = new ArrayList<>();
 	
 	
 	public NoteUtil() {
@@ -62,9 +58,6 @@ public class NoteUtil implements Serializable {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public List<ContributionUtil> getContributors() {
-		return contributors;
-	}
 	
 	
 	public NoteUtil noteToNoteUtil(Note note) {
@@ -73,10 +66,6 @@ public class NoteUtil implements Serializable {
 				note.getContent(),
 				note.getGeneralPermission(),
 				note.getAuthor().getUsername());
-		for(Contribution cont : note.getContributors()) {
-			ContributionUtil contUtil = new ContributionUtil().contToContUtil(cont);
-			userNote.getContributors().add(contUtil);
-		}
 		return userNote;
 	}
 }

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leonardocardozo.notesappbackend.entities.Note;
+import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
+import com.leonardocardozo.notesappbackend.services.ContributionService;
 import com.leonardocardozo.notesappbackend.services.NoteService;
 
 @RestController
@@ -24,6 +26,9 @@ public class NoteController implements Serializable {
 
 	@Autowired
 	private NoteService noteService;
+	
+	@Autowired
+	private ContributionService contService;
 
 	@GetMapping
 	public ResponseEntity<List<NoteUtil>> findAll() {
@@ -47,5 +52,13 @@ public class NoteController implements Serializable {
 	public ResponseEntity<String> delete(@PathVariable Long id) {
 		var resp = noteService.delete(id);
 		return ResponseEntity.ok().body(resp);
+	}
+	
+	//Contributor related requests
+	
+	@GetMapping(value = "/{id}/contributions")
+	public ResponseEntity<List<ContributionUtil>> findContributions(@PathVariable("id") Long id) {
+		List<ContributionUtil> contUtilList = contService.findByNoteId(id);
+		return ResponseEntity.ok().body(contUtilList);
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.repositories.ContributorRepository;
+import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
 import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
 
@@ -20,6 +21,9 @@ public class ContributionService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private NoteRepository noteRepo;
 
 	public List<ContributionUtil> findAll() {
 		List<ContributionUtil> contUtilList = new ArrayList<>();
@@ -42,6 +46,20 @@ public class ContributionService {
 			return contUtilList;
 		} else {
 			throw new ResourceNotFoundException(username);
+		}
+	}
+	
+	public List<ContributionUtil> findByNoteId(Long noteId) {
+		if (noteRepo.findNoteById(noteId) != null) {
+			List<Contribution> contlist = contRepo.findByNoteId(noteId);
+			List<ContributionUtil> contUtilList = new ArrayList<>();
+			for (Contribution cont : contlist) {
+				ContributionUtil contUtil = new ContributionUtil().contToContUtil(cont);
+				contUtilList.add(contUtil);
+			}
+			return contUtilList;
+		} else {
+			throw new ResourceNotFoundException(noteId.toString());
 		}
 	}
 }

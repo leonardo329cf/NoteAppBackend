@@ -13,4 +13,8 @@ public interface ContributorRepository extends JpaRepository<Contribution, Long>
 	@Query(value = "SELECT * FROM TB_CONTRIBUTION WHERE CONTRIBUTOR_USERNAME = ?1",
 			nativeQuery =  true)
 	List<Contribution> findByUsername(String username);
+	
+	@Query(value = "SELECT * FROM TB_CONTRIBUTION WHERE NOTE_ID = ?1",
+			nativeQuery =  true)
+	List<Contribution> findByNoteId(Long noteId);
 }
