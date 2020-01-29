@@ -1,7 +1,9 @@
 package com.leonardocardozo.notesappbackend.entities.utils;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class NoteUtil implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -11,7 +13,7 @@ public class NoteUtil implements Serializable {
 	private String content;
 	private Integer generalPermission;
 	private String author;
-	private Set<String> contributors;
+	private List<ContributorUtil> contributors = new ArrayList<>();
 	
 	
 	public NoteUtil() {
@@ -57,7 +59,7 @@ public class NoteUtil implements Serializable {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Set<String> getContributors() {
+	public List<ContributorUtil> getContributors() {
 		return contributors;
 	}
 	

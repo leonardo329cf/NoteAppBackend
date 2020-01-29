@@ -6,7 +6,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leonardocardozo.notesappbackend.entities.enums.ContributorPermission;
 import com.leonardocardozo.notesappbackend.entities.pk.ContributorPK;
 
@@ -31,15 +30,12 @@ public class Contributor implements Serializable {
 	}
 	
 	
-	@JsonIgnore
 	public User getContributor() {
 		return id.getContributors();
 	}
 	public void setContributor(User contributor) {
 		id.setContributor(contributor);
 	}
-	
-	@JsonIgnore
 	public Note getNote() {
 		return id.getNotes();
 	}
@@ -49,7 +45,6 @@ public class Contributor implements Serializable {
 	public Integer getPermission() {
 		return contributorPermission;
 	}
-
 	public void setPermission(ContributorPermission contributorPermission) {
 		this.contributorPermission = contributorPermission.getCode();
 	}

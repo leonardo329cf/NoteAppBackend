@@ -85,7 +85,11 @@ public class Note implements Serializable {
 		this.author = author;
 	}
 	public Set<Contributor> getContributors() {
-		return contributors;
+		Set<Contributor> resp = new HashSet<>();
+		for(Contributor c : contributors) {
+			resp.add(c);
+		}
+		return resp;
 	}
 	
 	
@@ -111,10 +115,5 @@ public class Note implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "Note [id=" + id + ", title=" + title + ", content=" + content + ", generalPermission="
-				+ generalPermission + ", author=" + author + ", contributors=" + contributors + "]";
 	}
 }

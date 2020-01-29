@@ -73,11 +73,21 @@ public class User implements Serializable {
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
 	}
+
 	public Set<Note> getNotes() {
-		return myNotes;
+		Set<Note> set = new HashSet<>();
+		for(Note n : myNotes) {
+			set.add(n);
+		}
+		return set;
 	}
-	public Set<Contributor> getContributions(){
-		return contributions;
+
+	public Set<Note> getContributions(){
+		Set<Note> set = new HashSet<>();
+		for(Contributor x : contributions) {
+			set.add((x.getNote()));
+		}
+		return set;
 	}
 	
 	@Override

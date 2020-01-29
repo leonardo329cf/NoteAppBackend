@@ -47,13 +47,6 @@ public class Config implements CommandLineRunner{
 		Note note5 = new Note("Let's talk here", "Hello, someone there?", GeneralPermission.PUBLIC_RW, user4);
 		
 		noteRepo.saveAll(Arrays.asList(note1, note2, note3, note4, note5));
-		
-		user1.getNotes().addAll(Arrays.asList(note1, note2));
-		user2.getNotes().add(note3);
-		user3.getNotes().add(note4);
-		user4.getNotes().add(note5);
-		
-		userRepo.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6));
 
 		Contributor con1 = new Contributor(user2, note2, ContributorPermission.CONTRIBUTOR_READ);
 		Contributor con2 = new Contributor(user1, note3, ContributorPermission.CONTRIBUTOR_WRITE);
@@ -61,20 +54,5 @@ public class Config implements CommandLineRunner{
 		Contributor con4 = new Contributor(user5, note1, ContributorPermission.CONTRIBUTOR_WRITE);
 
 		contributorRepo.saveAll(Arrays.asList(con1, con2, con3,con4));
-		
-		user2.getContributions().add(con1);
-		user1.getContributions().add(con2);
-		user6.getContributions().add(con3);
-		user5.getContributions().add(con4);
-		
-		userRepo.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6));
-		
-		note2.getContributors().add(con1);
-		note3.getContributors().add(con2);
-		note1.getContributors().add(con3);
-		note1.getContributors().add(con4);
-		
-		noteRepo.saveAll(Arrays.asList(note1, note2, note3, note4, note5));
-
 	}
 }

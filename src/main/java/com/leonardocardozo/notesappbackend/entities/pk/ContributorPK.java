@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.User;
 
@@ -28,6 +29,7 @@ public class ContributorPK implements Serializable {
 	public void setContributor(User contributor) {
 		this.contributor = contributor;
 	}
+	
 	public Note getNotes() {
 		return note;
 	}

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.leonardocardozo.notesappbackend.entities.Contributor;
 import com.leonardocardozo.notesappbackend.entities.Note;
+import com.leonardocardozo.notesappbackend.entities.utils.ContributorUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
@@ -21,6 +23,7 @@ public class NoteService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
 
 	public List<NoteUtil> findAll() {
 		var notes = noteRepo.findAll();
@@ -104,11 +107,18 @@ public class NoteService {
 	
 	//util function
 	private NoteUtil noteToNoteUtil(Note note) {
-		var userNote = new NoteUtil(note.getId(),
+		NoteUtil userNote = new NoteUtil(note.getId(),
 				note.getTitle(),
 				note.getContent(),
 				note.getGeneralPermission(),
 				note.getAuthor().getUsername());
+		for(Contributor c : note.getContributors()) {
+			ContributorUtil con = new ContributorUtil(
+					c.getContributor().getName(),
+					c.getNote().getId(),
+					c.getPermission());
+			userNote.getContributors().add(con);
+		}
 		return userNote;
 	}
 }
