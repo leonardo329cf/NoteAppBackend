@@ -1,8 +1,0 @@
-spring:
-    main:
-        banner-mode: "off"
-    profiles:
-        active: test
-    jpa:
-        open-in-view: true
-      
