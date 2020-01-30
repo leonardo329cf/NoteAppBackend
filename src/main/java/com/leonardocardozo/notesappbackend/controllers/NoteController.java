@@ -51,7 +51,7 @@ public class NoteController implements Serializable {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<String> delete(@PathVariable Long id) {
+	public ResponseEntity<NoteUtil> delete(@PathVariable Long id) {
 		var resp = noteService.delete(id);
 		return ResponseEntity.ok().body(resp);
 	}
@@ -85,11 +85,11 @@ public class NoteController implements Serializable {
 	}
 	
 	@DeleteMapping(value = "/{id}/contributions")
-	public ResponseEntity<String> deleteContributor(
+	public ResponseEntity<ContributionUtil> deleteContributor(
 			@PathVariable Long id,
 			@RequestParam(name = "username", required = true) String username
 			){
-		String msg = contService.delete(username, id);
-		return ResponseEntity.accepted().body(msg);
+		var resp = contService.delete(username, id);
+		return ResponseEntity.ok().body(resp);
 	}
 }

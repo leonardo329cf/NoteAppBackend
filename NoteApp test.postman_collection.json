@@ -635,6 +635,15 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"username\": \"analucia\",",
+									"        \"name\": \"Ana Lucia Correa\",",
+									"        \"picUrl\": \"\"",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1203,9 +1212,18 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Body matches string\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"6 deleted\");",
-									"});"
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 6,",
+									"        \"title\": \"Buy cheese\",",
+									"        \"content\": \"buy cheese\",",
+									"        \"generalPermission\": 0,",
+									"        \"author\": \"ana\"",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1788,15 +1806,26 @@
 					"response": []
 				},
 				{
-					"name": "remove has just been inserted",
+					"name": "remove exist",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
 								"exec": [
-									"pm.test(\"Status code is 202\", function () {",
-									"    pm.response.to.have.status(202);",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"contributorUsername\": \"Ana Lucia Correa\",",
+									"        \"noteId\": 1,",
+									"        \"noteAuthor\": \"alex\",",
+									"        \"noteTitle\": \"Todo\",",
+									"        \"contributorPermission\": 0",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
 									"});"
 								],
 								"type": "text/javascript"

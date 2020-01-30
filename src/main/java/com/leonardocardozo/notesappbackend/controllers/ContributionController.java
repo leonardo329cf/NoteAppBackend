@@ -3,6 +3,7 @@ package com.leonardocardozo.notesappbackend.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,8 @@ public class ContributionController {
 	private ContributionService contributionService;
 	
 	@GetMapping
-	public List<ContributionUtil> findAll() {
+	public ResponseEntity<List<ContributionUtil>> findAll() {
 		var contUtilList = contributionService.findAll();
-		return contUtilList;
+		return ResponseEntity.ok().body(contUtilList);
 	}
 }

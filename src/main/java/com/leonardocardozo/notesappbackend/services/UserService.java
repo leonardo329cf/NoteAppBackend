@@ -89,19 +89,16 @@ public class UserService {
 		}
 	}
 
-	public String delete(String username) {
+	public UserUtil delete(String username) {
 		try {
+			User user = userRepository.findByUsername(username);
+			UserUtil userUtil = new UserUtil().userToUserUtil(user);
 			userRepository.deleteById(username);
-			String resp = username + " deleted";
-			return resp;
+			return userUtil;
 		} catch (NullPointerException e) {
 			throw new ResourceNotFoundException(username);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(username);
 		}
 	}
-
-	//util conversion
-	
-
 }

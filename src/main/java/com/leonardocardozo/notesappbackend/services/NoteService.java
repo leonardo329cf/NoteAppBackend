@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.leonardocardozo.notesappbackend.entities.Contribution;
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.enums.GeneralPermission;
-import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
@@ -96,18 +94,16 @@ public class NoteService {
 		}
 	}
 	
-	public String delete(Long id) {
+	public NoteUtil delete(Long id) {
 		try {
+			Note note = noteRepo.findNoteById(id);
+			NoteUtil noteUtil = new NoteUtil().noteToNoteUtil(note);
 			noteRepo.deleteById(id);
-			String resp = id.toString() + " deleted";
-			return resp;
+			return noteUtil;
 		} catch (NullPointerException e) {
 			throw new ResourceNotFoundException(id.toString());
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id.toString());
 		}
 	}
-	
-	//util function
-
 }

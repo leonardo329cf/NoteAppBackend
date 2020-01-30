@@ -22,7 +22,7 @@ public interface ContributorRepository extends JpaRepository<Contribution, Long>
 	
 	@Query(value = "SELECT * FROM TB_CONTRIBUTION WHERE CONTRIBUTOR_USERNAME = ?1 AND NOTE_ID = ?2",
 			nativeQuery =  true)
-	List<Contribution> findByUsernameAndNoteId(String username, Long noteId);
+	Contribution findByUsernameAndNoteId(String username, Long noteId);
 
 	@Modifying
 	@Transactional
