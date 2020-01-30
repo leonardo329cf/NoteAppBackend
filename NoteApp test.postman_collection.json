@@ -1786,6 +1786,98 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "remove has just been inserted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1/contributions?username=analucia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1",
+								"contributions"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "analucia"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove inexistent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1/contributions?username=analucia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1",
+								"contributions"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "analucia"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

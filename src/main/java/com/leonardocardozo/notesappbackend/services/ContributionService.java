@@ -105,4 +105,15 @@ public class ContributionService {
 			throw new ResourceNotFoundException(noteId.toString() + " and username, " + username);
 		}
 	}
+	
+	public String delete(String username, Long noteId) {
+		if (!(contRepo.findByUsernameAndNoteId(username, noteId).isEmpty())) {
+			contRepo.deleteByUsernameAndNoteId(username, noteId);
+			return username + " isn't a contributor to note with id: " + noteId.toString() + " anymore.";
+		}
+		else {
+			throw new ResourceNotFoundException(noteId + " and username, " + username);
+		}
+	}
+
 }

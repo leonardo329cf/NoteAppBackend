@@ -3,7 +3,9 @@ package com.leonardocardozo.notesappbackend.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.leonardocardozo.notesappbackend.entities.Contribution;
 
@@ -21,4 +23,10 @@ public interface ContributorRepository extends JpaRepository<Contribution, Long>
 	@Query(value = "SELECT * FROM TB_CONTRIBUTION WHERE CONTRIBUTOR_USERNAME = ?1 AND NOTE_ID = ?2",
 			nativeQuery =  true)
 	List<Contribution> findByUsernameAndNoteId(String username, Long noteId);
+
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM TB_CONTRIBUTION WHERE CONTRIBUTOR_USERNAME = ?1 AND NOTE_ID = ?2",
+			nativeQuery = true)
+	void deleteByUsernameAndNoteId(String username, Long noteId);
 }

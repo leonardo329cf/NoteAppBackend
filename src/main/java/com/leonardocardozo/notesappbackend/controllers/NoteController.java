@@ -65,7 +65,7 @@ public class NoteController implements Serializable {
 	}
 	
 	@PostMapping(value = "/{id}/contributions")
-	public ResponseEntity<ContributionUtil> insertContribution(
+	public ResponseEntity<ContributionUtil> insertContributor(
 			@PathVariable Long id,
 			@RequestParam(name = "username", required = true) String username,
 			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission
@@ -75,12 +75,21 @@ public class NoteController implements Serializable {
 	}
 	
 	@PutMapping(value = "/{id}/contributions")
-	public ResponseEntity<ContributionUtil> updateContribution(
+	public ResponseEntity<ContributionUtil> updateContributor(
 			@PathVariable Long id,
 			@RequestParam(name = "username", required = true) String username,
 			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission
 			){
 		var resp = contService.update(username, id, contributionPermission);
 		return ResponseEntity.ok().body(resp);
+	}
+	
+	@DeleteMapping(value = "/{id}/contributions")
+	public ResponseEntity<String> deleteContributor(
+			@PathVariable Long id,
+			@RequestParam(name = "username", required = true) String username
+			){
+		String msg = contService.delete(username, id);
+		return ResponseEntity.accepted().body(msg);
 	}
 }
