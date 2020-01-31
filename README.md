@@ -105,7 +105,7 @@ The [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/maste
 
 ## Authors
 
-* **Leonardo Cardozo Ferreira** - [leonardo329cf] - (https://github.com/leonardo329cf)
+* **Leonardo Cardozo Ferreira** - [leonardo329cf](https://github.com/leonardo329cf)
 
 
 ## License
