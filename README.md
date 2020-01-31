@@ -92,9 +92,11 @@ You can run the folders:
 
 ## Built With
 
+* [Java](https://www.java.com/) - Programming language
 * [Spring](https://spring.io/) - The framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Eclipse](https://www.eclipse.org/) - IDE
+
 
 ## Contributing
 
