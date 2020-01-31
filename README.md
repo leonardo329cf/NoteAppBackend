@@ -105,7 +105,7 @@ The [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/maste
 
 ## Authors
 
-* **Leonardo Cardozo Ferreira** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Leonardo Cardozo Ferreira** - [leonardo329cf] - (https://github.com/leonardo329cf)
 
 
 ## License
@@ -113,3 +113,5 @@ The [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/maste
 This project is licensed under the GNU GPL 3.0
 
 ## Acknowledgments
+
+* **[PurpleBooth](https://github.com/PurpleBooth)** - for the readme.md template
