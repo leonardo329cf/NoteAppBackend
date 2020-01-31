@@ -82,15 +82,12 @@ Click in "Send"
 
 ## Running the tests
 
-The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other.
+The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other, you must restart the note application before running other folder.
 * On Postman:
 You can run the folders:  
-User class related tests  
-Restart the note application  
-Note class related tests  
-Restart the note application   
-Contribution class related tests  
-Restart the note application   
+	* User class related tests;  
+	* Note class related tests;  
+	* Contribution class related tests  
 
 
 ## Built With
