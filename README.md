@@ -61,37 +61,36 @@ sudo service mysql start
 ```
 
 * Go to Spring Tool Suite 4:
-Click on File/Open Projects from File System
-Select the folder you cloned
+Click on File/Open Projects from File System  
+Select the folder you cloned  
 
-Run configuration
-Arguments
-On "VM arguments" paste: -Djava.security.egd=file:/dev/./urandom
+Run configuration  
+Arguments  
+On "VM arguments" paste: -Djava.security.egd=file:/dev/./urandom  
 
-The default port is the 8080, you can configure local.port in the NoteAppBackend/src/main/resources/application-test.properties
+The default port is the 8080, you can configure local.port in the:  
+NoteAppBackend/src/main/resources/application-test.properties
 
-Right click on /src/main/java/com/leonardocardozo/notesappbackend/NoteAppBackendApplication.java
-and Run as Springboot App
+Right click on /src/main/java/com/leonardocardozo/notesappbackend/NoteAppBackendApplication.java  
+Run as Springboot App
 
 * Open Postman:
-Go to import and find NoteAppBackend folder and select "NoteApp test.postman_collection.json"
-Go to Note App Test -> User class related tests -> findAll
-Click in "Send"
+Go to import and find NoteAppBackend folder and select "NoteApp test.postman_collection.json"  
+Go to Note App Test -> User class related tests -> findAll  
+Click in "Send"  
 
 
 ## Running the tests
 
 The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other.
 * On Postman:
-You can run the folders:
-User class related tests
-Restart the application
-
-Note class related tests
-Restart the application
-
-Contribution class related tests
-Restart the application
+You can run the folders:  
+User class related tests  
+Restart the note application  
+Note class related tests  
+Restart the note application   
+Contribution class related tests  
+Restart the note application   
 
 
 ## Built With
