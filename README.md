@@ -64,7 +64,7 @@ You can run the folders:
 
 ## Contributing
 
-Go to [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/CONTRIBUTING.md) for more information about the code and how to contribute.
+Go to [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/CONTRIBUTING.md) for the full documentation of the code and how to contribute.
 
 
 ## Authors
