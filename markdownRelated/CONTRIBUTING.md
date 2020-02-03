@@ -1,7 +1,7 @@
 # Contributing
 
 Welcome and thanks for been interested in help.  
-For any doubt or idea related to contributing, you may contact me by: leonardo329cf@gmail.com
+For any doubt or to make major changes, you may contact me by: leonardo329cf@gmail.com
 
 ## Current State:
 ### What is implemented:
