@@ -100,7 +100,7 @@ You can run the folders:
 
 ## Contributing
 
-The [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/master/CONTRIBUTING.md) is under construction.
+The [CONTRIBUTING.md](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/CONTRIBUTING.md) is under construction.
 
 
 ## Authors
