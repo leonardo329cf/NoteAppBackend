@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 	* [Getting strated with MySQL](https://www.mysqltutorial.org/getting-started-with-mysql/)
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### Running the program:
+### Running the code:
 * You will need to clone this repository to your spring tool suite workspace's folder:
 	* Open and terminal in the mentioned folder and run:
 	```
@@ -60,6 +60,8 @@ You can run the folders:
 * [Spring](https://spring.io/) - The framework used;
 * [Maven](https://maven.apache.org/) - Dependency Management;
 * [Eclipse](https://www.eclipse.org/) - IDE;
+* [Postman](https://www.getpostman.com) - Automated tests;
+* [MySQL](https://www.mysql.com/) - Database;
 
 
 ## Contributing
@@ -78,4 +80,4 @@ This project is licensed under the GNU GPL 3.0
 
 ## Acknowledgments
 
-* **[PurpleBooth](https://github.com/PurpleBooth)** - for the readme.md template
+* **[PurpleBooth](https://github.com/PurpleBooth)** - for the readme.md base template
