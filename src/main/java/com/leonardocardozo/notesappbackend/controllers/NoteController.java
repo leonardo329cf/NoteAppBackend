@@ -60,8 +60,8 @@ public class NoteController implements Serializable {
 	
 	@GetMapping(value = "/{id}/contributions")
 	public ResponseEntity<List<ContributionUtil>> findContributions(@PathVariable("id") Long id) {
-		List<ContributionUtil> contUtilList = contService.findByNoteId(id);
-		return ResponseEntity.ok().body(contUtilList);
+		List<ContributionUtil> resp = contService.findByNoteId(id);
+		return ResponseEntity.ok().body(resp);
 	}
 	
 	@PostMapping(value = "/{id}/contributions")

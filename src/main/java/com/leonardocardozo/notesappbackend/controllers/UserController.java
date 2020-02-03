@@ -49,9 +49,11 @@ public class UserController {
 	public ResponseEntity<List<UserUtil>> findByUsernameAndNameContaining(
 			@RequestParam(value = "username", required = false, defaultValue = "") String username,
 			@RequestParam(value = "name", required = false, defaultValue = "") String name) {
-		var list = userService.findByUsernameAndNameContaining(username, name);
-		return ResponseEntity.ok().body(list);
+		var resp = userService.findByUsernameAndNameContaining(username, name);
+		return ResponseEntity.ok().body(resp);
 	}
+	
+	
 
 	@GetMapping(value = "/{username}")
 	public ResponseEntity<UserUtil> findByUsername(@PathVariable String username) {
@@ -111,7 +113,7 @@ public class UserController {
 	public ResponseEntity<List<ContributionUtil>> findContributions(
 			@PathVariable String username
 			){
-		List<ContributionUtil> contUtilList = contService.findByUsername(username);
-		return ResponseEntity.ok().body(contUtilList);
+		List<ContributionUtil> resp = contService.findByUsername(username);
+		return ResponseEntity.ok().body(resp);
 	}
 }

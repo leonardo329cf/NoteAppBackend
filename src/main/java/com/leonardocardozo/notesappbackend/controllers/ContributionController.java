@@ -20,7 +20,7 @@ public class ContributionController {
 	
 	@GetMapping
 	public ResponseEntity<List<ContributionUtil>> findAll() {
-		var contUtilList = contributionService.findAll();
-		return ResponseEntity.ok().body(contUtilList);
+		var resp = contributionService.findAll();
+		return ResponseEntity.ok().body(resp);
 	}
 }
