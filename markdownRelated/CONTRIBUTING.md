@@ -37,5 +37,5 @@ For any doubt or idea related to contributing, you may contact me by: leonardo32
 * Each service shouldn't return entities of other kind beside their own or their Util version:
 	* UserService will return User class or UserUtil class;
 * Exceptions related to Model or Repository are thrown in the service class;
-![UML for the entities](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/NoteAppBackend-entitiesUml.jpg)  
-![HTTP requests map](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/NoteAppBackend-HTTPmap.jpg)  
+* ![UML for the entities](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/NoteAppBackend-entitiesUml.jpg)  
+* ![HTTP requests map](https://github.com/leonardo329cf/NoteAppBackend/blob/master/markdownRelated/NoteAppBackend-HTTPmap.jpg)  
