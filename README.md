@@ -3,7 +3,7 @@
 The Note App will allow the user to create, keep, modify and  delete their profile, notes and contributors for a note. This program is still in its early development state, for now just the backend was implemented and many of the features need futher work.
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### What you will need to install:
 * [Java 11 SDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html);
