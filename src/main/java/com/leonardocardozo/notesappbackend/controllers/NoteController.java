@@ -21,6 +21,8 @@ import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
 import com.leonardocardozo.notesappbackend.services.ContributionService;
 import com.leonardocardozo.notesappbackend.services.NoteService;
 
+
+
 @RestController
 @RequestMapping(value = "/notes")
 public class NoteController implements Serializable {

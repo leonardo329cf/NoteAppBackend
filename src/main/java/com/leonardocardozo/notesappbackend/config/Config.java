@@ -16,6 +16,7 @@ import com.leonardocardozo.notesappbackend.repositories.ContributorRepository;
 import com.leonardocardozo.notesappbackend.repositories.NoteRepository;
 import com.leonardocardozo.notesappbackend.repositories.UserRepository;
 
+
 @Configuration
 @Profile("test")
 public class Config implements CommandLineRunner{
