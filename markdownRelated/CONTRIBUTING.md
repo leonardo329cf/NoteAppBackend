@@ -28,6 +28,14 @@ For any doubt or to make major changes, you may contact me by: leonardo329cf@gma
 	* Insert contribution;
 	* Update contribution;
 	* Remove contribution;
+* Spring Security and access control:
+	* Contributors may have permission for:
+		* Read;
+		* Read and write;
+	* Notes permission are:
+		* Author read and write;
+		* Public read;
+		* Public read and write.
 	
 
 ### How you can contribute
