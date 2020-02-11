@@ -22,37 +22,42 @@
 									"pm.test(\"Return json\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    var jsonExpected = [",
-									"    {",
-									"        \"username\": \"alex\",",
-									"        \"name\": \"Alex Schneider\",",
-									"        \"picUrl\": \"\"",
-									"    },",
-									"    {",
-									"        \"username\": \"aley\",",
-									"        \"name\": \"Aley Kalashinikov\",",
-									"        \"picUrl\": \"\"",
-									"    },",
-									"    {",
-									"        \"username\": \"ana\",",
-									"        \"name\": \"Ana Amelia Silva\",",
-									"        \"picUrl\": \"\"",
-									"    },",
-									"    {",
-									"        \"username\": \"analucia\",",
-									"        \"name\": \"Ana Lucia Correa\",",
-									"        \"picUrl\": \"\"",
-									"    },",
-									"    {",
-									"        \"username\": \"altair\",",
-									"        \"name\": \"Alatair Rocha\",",
-									"        \"picUrl\": \"\"",
-									"    },",
-									"    {",
-									"        \"username\": \"anajulia\",",
-									"        \"name\": \"Ana Julia Hermanos\",",
-									"        \"picUrl\": \"\"",
-									"    }",
-									"];",
+									"        {",
+									"            \"username\": \"alex\",",
+									"            \"name\": \"Alex Schneider\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"aley\",",
+									"            \"name\": \"Aley Kalashinikov\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"ana\",",
+									"            \"name\": \"Ana Amelia Silva\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"analucia\",",
+									"            \"name\": \"Ana Lucia Correa\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"altair\",",
+									"            \"name\": \"Alatair Rocha\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"anajulia\",",
+									"            \"name\": \"Ana Julia Hermanos\",",
+									"            \"picUrl\": \"\"",
+									"        },",
+									"        {",
+									"            \"username\": \"admin\",",
+									"            \"name\": \"Administrador\",",
+									"            \"picUrl\": \"\"",
+									"        }",
+									"    ];",
 									"    pm.expect(jsonData).to.eql(jsonExpected);",
 									"});"
 								],
@@ -61,10 +66,25 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users?",
+							"raw": "http://localhost:8080/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -113,6 +133,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -186,6 +221,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -265,6 +315,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -325,6 +390,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -387,14 +467,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/users",
+							"raw": "http://localhost:8080/newUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users"
+								"newUser"
 							]
 						}
 					},
@@ -402,7 +482,95 @@
 				},
 				{
 					"name": "User findByUsername exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2cdeb3a0-50f4-4346-939a-0bbfadc150ba",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"username\": \"leo\",",
+									"        \"name\": \"Leonardo\",",
+									"        \"picUrl\": null",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/leo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"leo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User findByUsername unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2cdeb3a0-50f4-4346-939a-0bbfadc150ba",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -456,14 +624,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/users",
+							"raw": "http://localhost:8080/newUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users"
+								"newUser"
 							]
 						}
 					},
@@ -489,6 +657,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -523,6 +706,72 @@
 					"response": []
 				},
 				{
+					"name": "User update forbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8917927-5834-4a2e-a92b-5cfe9578e0d2",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"picUrl\": \"picurl.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/alex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"alex"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "User update inexisting user",
 					"event": [
 						{
@@ -530,8 +779,8 @@
 							"script": {
 								"id": "c8917927-5834-4a2e-a92b-5cfe9578e0d2",
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -539,6 +788,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -592,6 +856,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -626,6 +905,55 @@
 					"response": []
 				},
 				{
+					"name": "User delete analucia forbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5b815c2-7bb8-4bc3-a151-36d384ad0a48",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/analucia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"analucia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "User delete analucia",
 					"event": [
 						{
@@ -651,6 +979,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1236",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "analucia",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -676,8 +1019,8 @@
 							"script": {
 								"id": "74a0c88f-8787-43aa-a7fb-ba1427f2a4c5",
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -766,6 +1109,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -783,7 +1141,7 @@
 					"response": []
 				},
 				{
-					"name": "Notes findById",
+					"name": "Notes findById author",
 					"event": [
 						{
 							"listen": "test",
@@ -810,6 +1168,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -822,6 +1195,126 @@
 							"path": [
 								"notes",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findById cont",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 1,",
+									"        \"title\": \"Todo\",",
+									"        \"content\": \"buy cheese\",",
+									"        \"generalPermission\": 0,",
+									"        \"author\": \"alex\"",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1238",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anajulia",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findById anyone can read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 3,",
+									"        \"title\": \"Can you see this note?\",",
+									"        \"content\": \"can you see?\",",
+									"        \"generalPermission\": 1,",
+									"        \"author\": \"aley\"",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1238",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anajulia",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"3"
 							]
 						}
 					},
@@ -844,6 +1337,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -891,6 +1399,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -917,8 +1440,8 @@
 							"script": {
 								"id": "feef2050-db43-4695-8009-5cdd81a72278",
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -926,6 +1449,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -974,6 +1512,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1019,6 +1572,81 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/ana/notes?title=canyou",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ana",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "canyou"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notes findByAuthorAndTItle inexisting title Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef2050-db43-4695-8009-5cdd81a72278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1071,6 +1699,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1113,8 +1756,8 @@
 							"script": {
 								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1122,6 +1765,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1184,6 +1842,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1230,6 +1903,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -1264,6 +1952,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1235",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ana",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -1282,7 +1985,7 @@
 					"response": []
 				},
 				{
-					"name": "Note update",
+					"name": "Note update author",
 					"event": [
 						{
 							"listen": "test",
@@ -1309,13 +2012,28 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -1359,6 +2077,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1237",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "altair",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -1387,6 +2120,147 @@
 							"path": [
 								"notes",
 								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note update cont rw",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Return json\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var jsonExpected = {",
+									"        \"id\": 1,",
+									"        \"title\": \"bought cheese\",",
+									"        \"content\": \"a lot of cheese\",",
+									"        \"generalPermission\": 0,",
+									"        \"author\": \"alex\"",
+									"    };",
+									"    pm.expect(jsonData).to.eql(jsonExpected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1237",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "altair",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"bought cheese\",\n    \"content\": \"a lot of cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Note update cont r",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba17aedb-48f5-4c70-967a-97748559f6e7",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1238",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anajulia",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"bought cheese\",\n    \"content\": \"bought cheese\",\n    \"generalPermission\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
 							]
 						}
 					},
@@ -1449,6 +2323,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1495,6 +2384,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1238",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anajulia",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1521,8 +2425,8 @@
 							"script": {
 								"id": "71be528d-0a94-4215-b441-e5fbf12e25b7",
 								"exec": [
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1530,6 +2434,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1238",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anajulia",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1585,6 +2504,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1631,6 +2565,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
@@ -1676,6 +2625,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1237",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "altair",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
@@ -1721,6 +2685,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "aley",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
@@ -1777,6 +2756,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
@@ -1833,6 +2827,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -1879,6 +2888,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {

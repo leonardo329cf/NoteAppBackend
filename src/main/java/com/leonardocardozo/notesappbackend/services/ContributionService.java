@@ -2,6 +2,7 @@ package com.leonardocardozo.notesappbackend.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -120,6 +121,15 @@ public class ContributionService {
 		}
 		else {
 			throw new ResourceNotFoundException(noteId + " and username, " + username);
+		}
+	}
+	
+	public boolean isContributor(String username, Long noteId, Integer permission) {
+		Contribution cont = contRepo.findByUsernameAndNoteId(username, noteId);
+		if(cont != null && cont.getPermission() >= permission) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
