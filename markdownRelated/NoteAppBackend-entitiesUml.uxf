@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>480</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Note
+--
+id: Long
+title: String
+content: String
+GeneralPermission: Integer
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>90</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>User
+--
+username: String
+password: String
+name: String
+String: picUrl
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>190</y>
+      <w>90</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+r1=author
+m2=0..n
+r2=myNotes
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>120</y>
+      <w>140</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+r1=contributions
+m2=0..n
+r2=contributions</panel_attributes>
+    <additional_attributes>10.0;410.0;120.0;410.0;120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>320</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>580</x>
+      <y>310</y>
+      <w>230</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Contribution
+--
+contributorPermission: Integer
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

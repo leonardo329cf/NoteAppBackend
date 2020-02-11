@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>558</x>
+      <y>300</y>
+      <w>114</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>HTTP resquest map</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>204</y>
+      <w>162</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>findByUsernameAndNameContaining
+--
+&lt;&lt;param&gt;&gt;username(NReq, ""): String
+&lt;&lt;param&gt;&gt;name(NReq, ""): String
+--
+resp: List&lt;UserUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>222</y>
+      <w>66</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>276</x>
+      <y>294</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/users</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>204</y>
+      <w>114</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>insert
+--
+&lt;&lt;body&gt;&gt; user: User
+--
+resp: UserUtil
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>258</x>
+      <y>222</y>
+      <w>66</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=POST</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>312</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>276</x>
+      <y>354</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/{username}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>348</y>
+      <w>114</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>findByUsername
+--
+&lt;&lt;path&gt;&gt; username: String
+--
+resp: UserUtil
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>138</x>
+      <y>360</y>
+      <w>150</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>156</x>
+      <y>408</y>
+      <w>114</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>update
+--
+&lt;&lt;path&gt;&gt; username: String
+--
+resp: UserUtil
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>360</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=PUT</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>282</y>
+      <w>114</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>delete
+--
+&lt;&lt;path&gt;&gt; username: String
+--
+resp: UserUtil
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>318</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=DELETE</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;120.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>372</y>
+      <w>18</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>276</x>
+      <y>498</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/notes</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>78</x>
+      <y>534</y>
+      <w>162</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>findByAuthorAndTitle
+--
+&lt;&lt;path&gt;&gt;username: String
+&lt;&lt;param&gt;&gt;title(NReq, ""): String
+--
+resp: List&lt;NoteUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>516</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>10.0;70.0;130.0;70.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>588</y>
+      <w>114</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>insertNote
+--
+&lt;&lt;path&gt;&gt;username: String
+&lt;&lt;body&gt;&gt; note: Note
+--
+resp: NoteUtil
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>516</y>
+      <w>36</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=POST</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>420</x>
+      <y>498</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/contributions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>594</y>
+      <w>126</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>findContributions
+--
+&lt;&lt;path&gt;&gt;username: String
+--
+resp: List&lt;ContributionUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>516</y>
+      <w>36</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>312</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>582</x>
+      <y>366</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/contributions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>552</x>
+      <y>438</y>
+      <w>126</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>findAll
+--
+--
+resp: List&lt;ContributionUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>384</y>
+      <w>36</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>804</x>
+      <y>294</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/notes</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>774</x>
+      <y>222</y>
+      <w>126</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>findAll
+--
+--
+resp: List&lt;NoteUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>252</y>
+      <w>36</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+GET</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>312</y>
+      <w>18</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>804</x>
+      <y>402</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/{id}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>390</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>findById
+--
+&lt;&lt;path&gt;&gt;id: Long
+--
+resp: NoteUtil</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>408</y>
+      <w>162</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>324</y>
+      <w>84</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>update
+--
+&lt;&lt;path&gt;&gt;id: Long
+&lt;&lt;body&gt;&gt;note: Note
+--
+resp: NoteUtil</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>372</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=PUT</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;70.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>456</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>delete
+--
+&lt;&lt;path&gt;&gt;id: Long
+--
+resp: NoteUtil</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>408</y>
+      <w>144</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=DELETE</panel_attributes>
+    <additional_attributes>170.0;80.0;170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>360</y>
+      <w>126</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>190.0;230.0;190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>516</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>findContributions
+--
+&lt;&lt;path&gt;&gt;id: Long
+--
+resp: List&lt;ContributionUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>492</y>
+      <w>78</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=DELETE</panel_attributes>
+    <additional_attributes>10.0;220.0;110.0;220.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>492</y>
+      <w>54</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=GET</panel_attributes>
+    <additional_attributes>10.0;80.0;70.0;80.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>594</y>
+      <w>186</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>updateContributor
+--
+&lt;&lt;path&gt;&gt;id: Long
+&lt;&lt;param&gt;&gt;username(Req): String
+&lt;&lt;param&gt;&gt;generalPermission(Req): Integer
+--
+resp: List&lt;ContributionUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>804</x>
+      <y>474</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/contributions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>492</y>
+      <w>78</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=PUT</panel_attributes>
+    <additional_attributes>110.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>516</y>
+      <w>186</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>findContributions
+--
+&lt;&lt;path&gt;&gt;id: Long
+&lt;&lt;param&gt;&gt;username(Req): String
+&lt;&lt;param&gt;&gt;generalPermission(Req): Integer
+--
+resp: List&lt;ContributionUtil&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>492</y>
+      <w>78</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=POST</panel_attributes>
+    <additional_attributes>110.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>594</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>findContributions
+--
+&lt;&lt;path&gt;&gt;id: Long
+&lt;&lt;param&gt;&gt;username(R): String
+--
+resp: ContributionUtil</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>420</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>300</y>
+      <w>150</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>300</y>
+      <w>228</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;10.0</additional_attributes>
+  </element>
+</diagram>
