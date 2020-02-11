@@ -1,6 +1,6 @@
 # Note Backed App
 
-The Note App will allow the user to create, keep, modify and  delete their profile, notes and contributors for a note. This program is still in its early development state, for now just the backend was implemented and many of the features need futher work.
+The Note App will allow the user to create, keep, modify and  delete their profile, notes and contributors for a note; notes can be set as private, public read or public read and write, futhermore, you may add contributors to a note and allow him read or read and write, the security was made using spring security. This program is still in its early development state, for now just the backend was implemented and many of the features need futher work.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
