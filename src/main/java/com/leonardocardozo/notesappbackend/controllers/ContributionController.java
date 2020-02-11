@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.services.ContributionService;
 
+
 @RestController
 @RequestMapping(value = "/contributions")
 public class ContributionController {
@@ -18,9 +19,10 @@ public class ContributionController {
 	@Autowired
 	private ContributionService contributionService;
 	
+	
 	@GetMapping
 	public ResponseEntity<List<ContributionUtil>> findAll() {
-		var contUtilList = contributionService.findAll();
-		return ResponseEntity.ok().body(contUtilList);
+		var resp = contributionService.findAll();
+		return ResponseEntity.ok().body(resp);
 	}
 }

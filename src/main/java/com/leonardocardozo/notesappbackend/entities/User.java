@@ -25,6 +25,10 @@ public class User implements Serializable {
 	
 	private String password;
 	
+	private boolean active;
+	
+	private String roles;
+	
 	private String name;
 	private String picUrl;
 	
@@ -46,6 +50,18 @@ public class User implements Serializable {
 		this.password = password;
 		this.name = name;
 		this.picUrl = "";
+		this.setRoles("USER");
+		this.setActive(true);
+	}
+	
+	public User(String username, String password, String name, String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.picUrl = "";
+		this.setRoles(role);
+		this.setActive(true);
 	}
 	
 	
@@ -60,6 +76,18 @@ public class User implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public String getRoles() {
+		return roles;
+	}
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	public String getName() {
 		return name;
