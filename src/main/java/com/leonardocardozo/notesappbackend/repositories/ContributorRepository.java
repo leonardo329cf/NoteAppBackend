@@ -1,7 +1,6 @@
 package com.leonardocardozo.notesappbackend.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -30,5 +29,4 @@ public interface ContributorRepository extends JpaRepository<Contribution, Long>
 	@Query(value = "DELETE FROM TB_CONTRIBUTION WHERE CONTRIBUTOR_USERNAME = ?1 AND NOTE_ID = ?2",
 			nativeQuery = true)
 	void deleteByUsernameAndNoteId(String username, Long noteId);
-	
 }
