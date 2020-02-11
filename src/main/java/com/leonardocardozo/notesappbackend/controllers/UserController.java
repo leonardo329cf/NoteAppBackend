@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.leonardocardozo.notesappbackend.entities.Note;
@@ -25,6 +26,7 @@ import com.leonardocardozo.notesappbackend.security.exceptions.ForbiddenExceptio
 import com.leonardocardozo.notesappbackend.services.ContributionService;
 import com.leonardocardozo.notesappbackend.services.NoteService;
 import com.leonardocardozo.notesappbackend.services.UserService;
+import com.leonardocardozo.notesappbackend.services.exceptions.ResourceNotFoundException;
 
 @RestController
 public class UserController {
@@ -69,7 +71,7 @@ public class UserController {
 			@RequestBody User user,
 			Principal principal
 			) {
-		if(principal.getName().equals(username)) {
+		 if (principal.getName().equals(username)) {
 			var resp = userService.update(username, user);
 			return ResponseEntity.ok().body(resp);
 		} else {

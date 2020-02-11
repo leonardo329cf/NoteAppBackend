@@ -38,8 +38,9 @@ public class Config implements CommandLineRunner{
 		User user4 = new User("analucia", "1236", "Ana Lucia Correa");
 		User user5 = new User("altair", "1237", "Alatair Rocha");
 		User user6 = new User("anajulia", "1238", "Ana Julia Hermanos");
+		User user7 = new User("admin", "admin", "Administrador", "ADMIN");
 		
-		userRepo.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6));
+		userRepo.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6, user7));
 		
 		Note note1 = new Note("Todo", "buy cheese", GeneralPermission.AUTHOR_RW, user1);
 		Note note2 = new Note("Travel", "Canada, next weekend, don't forget", GeneralPermission.AUTHOR_RW, user1);

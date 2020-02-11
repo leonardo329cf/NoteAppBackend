@@ -1,7 +1,12 @@
 package com.leonardocardozo.notesappbackend.controllers;
 
 import java.io.Serializable;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.leonardocardozo.notesappbackend.entities.Note;
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
 import com.leonardocardozo.notesappbackend.entities.utils.NoteUtil;
+import com.leonardocardozo.notesappbackend.security.exceptions.ForbiddenException;
 import com.leonardocardozo.notesappbackend.services.ContributionService;
 import com.leonardocardozo.notesappbackend.services.NoteService;
-
-
 
 @RestController
 @RequestMapping(value = "/notes")
@@ -30,7 +34,7 @@ public class NoteController implements Serializable {
 
 	@Autowired
 	private NoteService noteService;
-	
+
 	@Autowired
 	private ContributionService contService;
 
@@ -41,57 +45,93 @@ public class NoteController implements Serializable {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<NoteUtil> findById(@PathVariable Long id) {
+	public ResponseEntity<NoteUtil> findById(@PathVariable Long id, Principal principal) {
 		NoteUtil resp = noteService.findById(id);
-		return ResponseEntity.ok().body(resp);
+		if (
+				resp.getAuthor().equals(principal.getName())
+				|| contService.isContributor(principal.getName(), id, 0)
+				|| resp.getGeneralPermission() == 1
+				|| resp.getGeneralPermission() == 2
+				) {
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
+
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<NoteUtil> update(@PathVariable Long id, @RequestBody Note note) {
-		var resp = noteService.update(id, note);
-		return ResponseEntity.ok().body(resp);
+	public ResponseEntity<NoteUtil> update(@PathVariable Long id, @RequestBody Note note, Principal principal) {
+		NoteUtil baseNote = noteService.findById(id);
+		if (
+				baseNote.getAuthor().equals(principal.getName())
+				|| contService.isContributor(principal.getName(), id, 1)
+				|| baseNote.getGeneralPermission() == 2
+				) {
+			var resp = noteService.update(id, note);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
+
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<NoteUtil> delete(@PathVariable Long id) {
-		var resp = noteService.delete(id);
-		return ResponseEntity.ok().body(resp);
+	public ResponseEntity<NoteUtil> delete(@PathVariable Long id, Principal principal) {
+		if (noteService.findById(id).getAuthor().equals(principal.getName())) {
+			var resp = noteService.delete(id);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
 	}
-	
-	//Contributor related requests
-	
+
+	// Contributor related requests
+
 	@GetMapping(value = "/{id}/contributions")
-	public ResponseEntity<List<ContributionUtil>> findContributions(@PathVariable("id") Long id) {
-		List<ContributionUtil> resp = contService.findByNoteId(id);
-		return ResponseEntity.ok().body(resp);
+	public ResponseEntity<List<ContributionUtil>> findContributions(@PathVariable("id") Long id, Principal principal) {
+		if (noteService.findById(id).getAuthor().equals(principal.getName())) {
+			List<ContributionUtil> resp = contService.findByNoteId(id);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
 	}
-	
+
 	@PostMapping(value = "/{id}/contributions")
-	public ResponseEntity<ContributionUtil> insertContributor(
-			@PathVariable Long id,
+	public ResponseEntity<ContributionUtil> insertContributor(@PathVariable Long id,
 			@RequestParam(name = "username", required = true) String username,
-			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission
-			){
-		var resp = contService.insert(username, id, contributionPermission);
-		return ResponseEntity.ok().body(resp);
+			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission,
+			Principal principal) {
+		if (noteService.findById(id).getAuthor().equals(principal.getName())) {
+			var resp = contService.insert(username, id, contributionPermission);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
 	}
-	
+
 	@PutMapping(value = "/{id}/contributions")
-	public ResponseEntity<ContributionUtil> updateContributor(
-			@PathVariable Long id,
+	public ResponseEntity<ContributionUtil> updateContributor(@PathVariable Long id,
 			@RequestParam(name = "username", required = true) String username,
-			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission
-			){
-		var resp = contService.update(username, id, contributionPermission);
-		return ResponseEntity.ok().body(resp);
+			@RequestParam(name = "generalPermission", required = true) Integer contributionPermission,
+			Principal principal) {
+		if (noteService.findById(id).getAuthor().equals(principal.getName())) {
+			var resp = contService.update(username, id, contributionPermission);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
 	}
-	
+
 	@DeleteMapping(value = "/{id}/contributions")
-	public ResponseEntity<ContributionUtil> deleteContributor(
-			@PathVariable Long id,
-			@RequestParam(name = "username", required = true) String username
-			){
-		var resp = contService.delete(username, id);
-		return ResponseEntity.ok().body(resp);
+	public ResponseEntity<ContributionUtil> deleteContributor(@PathVariable Long id,
+			@RequestParam(name = "username", required = true) String username, Principal principal) {
+		if (noteService.findById(id).getAuthor().equals(principal.getName())) {
+			var resp = contService.delete(username, id);
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
 	}
 }

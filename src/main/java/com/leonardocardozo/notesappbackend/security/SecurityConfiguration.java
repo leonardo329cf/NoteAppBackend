@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and()
 		.authorizeRequests()
 			.antMatchers("/users")
-				.hasAuthority("USER")
+				.hasAnyAuthority("USER", "ADMIN")
 		.and()
 		.authorizeRequests()
 			.antMatchers("/h2-console/**")
@@ -36,11 +36,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and()
 		.authorizeRequests()
 			.antMatchers("/notes")
-				.permitAll()
+				.hasAnyAuthority("USER", "ADMIN")
 		.and()
 		.authorizeRequests()
 			.antMatchers("/contributions")
-				.permitAll()
+				.hasAuthority("ADMIN")
 		.and()
 		.formLogin();	
 		
