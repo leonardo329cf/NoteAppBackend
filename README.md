@@ -44,7 +44,7 @@ Go to Note App Test -> User class related tests -> findAll
 Click in "Send"  
 
 
-## Running the tests
+## Running functional tests
 
 The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other, you must restart the note application before running other folder.
 * On Postman:
