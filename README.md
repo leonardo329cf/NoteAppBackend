@@ -46,7 +46,7 @@ Click in "Send"
 
 ## Running functional tests
 
-The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other, you must restart the note application before running other folder.
+The folders "xxxx class related tests" use the same mocked data, and they will interfere with each other, you must restart the note application before running other folder or run in the following order: Contribution class related tests, Note class related tests, User class related tests.
 * On Postman:
 You can run the folders:  
 	* User class related tests;  
