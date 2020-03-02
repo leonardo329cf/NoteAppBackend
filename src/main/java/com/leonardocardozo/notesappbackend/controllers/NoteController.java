@@ -39,9 +39,14 @@ public class NoteController implements Serializable {
 	private ContributionService contService;
 
 	@GetMapping
-	public ResponseEntity<List<NoteUtil>> findAll() {
-		var resp = noteService.findAll();
-		return ResponseEntity.ok().body(resp);
+	public ResponseEntity<List<NoteUtil>> findAll(Principal principal) {
+		if(principal.getName() == "admin") {
+			var resp = noteService.findAll();
+			return ResponseEntity.ok().body(resp);
+		} else {
+			throw new ForbiddenException("Forbidden");
+		}
+		
 	}
 
 	@GetMapping(value = "/{id}")

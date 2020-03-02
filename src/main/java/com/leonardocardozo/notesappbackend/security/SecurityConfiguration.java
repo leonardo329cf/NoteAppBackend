@@ -42,7 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/contributions")
 				.hasAuthority("ADMIN")
 		.and()
-		.formLogin();	
+		.formLogin()
+		.and()
+		.logout();
 		
 		http.csrf().disable();
         http.headers().frameOptions().disable();
