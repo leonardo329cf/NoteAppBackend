@@ -59,7 +59,7 @@ Go to import and find NoteAppBackend folder and select "NoteApp test.postman_col
 Go to Note App Test -> User class related tests -> findAll  
 Click in "Send"
 
-* After you finish test make sure to stop and remove the containers:
+* After you finish testing make sure to stop and remove the containers:
 ```
 docker stop backend-noteapp
 docker rm backend-noteapp
