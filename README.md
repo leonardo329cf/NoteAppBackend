@@ -10,7 +10,7 @@ Download this project to your preferred folder.
 
 #### What you will need to install:
 * [Docker](https://www.docker.com/);
-* [Postman](https://www.getpostman.com);
+* [Postman](https://www.getpostman.com)
 
 #### Runing:
 * Running the containers:
