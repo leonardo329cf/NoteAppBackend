@@ -20,7 +20,7 @@ import com.leonardocardozo.notesappbackend.repositories.UserRepository;
 @Configuration
 @Profile("test")
 public class Config implements CommandLineRunner{
-
+	
 	@Autowired
 	private UserRepository userRepo;
 	
@@ -31,7 +31,8 @@ public class Config implements CommandLineRunner{
 	private ContributorRepository contributorRepo;
 	
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws Exception {		
+		
 		User user1 = new User("alex", "123", "Alex Schneider");
 		User user2 = new User("aley", "1234", "Aley Kalashinikov");
 		User user3 = new User("ana", "1235", "Ana Amelia Silva");

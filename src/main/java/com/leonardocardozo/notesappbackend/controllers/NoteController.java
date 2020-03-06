@@ -2,14 +2,13 @@ package com.leonardocardozo.notesappbackend.controllers;
 
 import java.io.Serializable;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,15 +37,11 @@ public class NoteController implements Serializable {
 	@Autowired
 	private ContributionService contService;
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<NoteUtil>> findAll(Principal principal) {
-		if(principal.getName() == "admin") {
 			var resp = noteService.findAll();
 			return ResponseEntity.ok().body(resp);
-		} else {
-			throw new ForbiddenException("Forbidden");
-		}
-		
 	}
 
 	@GetMapping(value = "/{id}")

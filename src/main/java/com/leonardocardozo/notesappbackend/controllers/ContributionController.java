@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leonardocardozo.notesappbackend.entities.utils.ContributionUtil;
-import com.leonardocardozo.notesappbackend.security.exceptions.ForbiddenException;
 import com.leonardocardozo.notesappbackend.services.ContributionService;
 
 
@@ -24,11 +23,7 @@ public class ContributionController {
 	
 	@GetMapping
 	public ResponseEntity<List<ContributionUtil>> findAll(Principal principal) {
-		if(principal.getName() == "admin") {
 			var resp = contributionService.findAll();
 			return ResponseEntity.ok().body(resp);
-		} else {
-			throw new ForbiddenException("Forbidden");
-		}
 	}
 }

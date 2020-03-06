@@ -36,7 +36,7 @@ public class Note implements Serializable {
 	@JsonIgnore
 	@ManyToOne(fetch = LAZY)
 	private User author;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.note", cascade = CascadeType.REMOVE)
 	private Set<Contribution> contributions = new HashSet<>();

@@ -53,8 +53,9 @@ public class UserService {
 	public UserUtil insert(User user) {
 		user.setUsername(user.getUsername().toLowerCase());
 		if (userRepository.findByUsername(user.getUsername()) == null) {
-			user = userRepository.save(user);
-			UserUtil userUtil = new UserUtil().userToUserUtil(user);
+			User userSave = new User(user.getUsername(), user.getPassword(), user.getName());
+			userSave = userRepository.save(userSave);
+			UserUtil userUtil = new UserUtil().userToUserUtil(userSave);
 			return userUtil;
 		} else {
 			throw new ResourceAlreadyExists(user.getUsername());
@@ -81,6 +82,8 @@ public class UserService {
 			if (user.getContributions() == null) {
 				user.getContributions().addAll(baseUser.getContributions());
 			}
+			user.setRoles(baseUser.getRoles());
+
 			baseUser = userRepository.save(user);
 			UserUtil userUtil = new UserUtil().userToUserUtil(baseUser);
 			return userUtil;

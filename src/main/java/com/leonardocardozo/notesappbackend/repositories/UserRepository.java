@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, String>{
 
 	public User findByUsername(String username);
 	
-	 @Query(value = "SELECT * FROM TB_USER WHERE USERNAME LIKE %?1% AND LOWER(NAME) LIKE %?2%", nativeQuery = true)
+	@Query(value = "SELECT * FROM tb_user WHERE username LIKE %?1% AND LOWER(name) LIKE %?2%", nativeQuery = true)
 	public List<User> findByUsernameAndNameContaining(String username, String name);
 
 }
