@@ -26,7 +26,7 @@ Download this project to your preferred folder.
 
 	Wait for some seconds and verify if it is running:
 	```
-	docker inspect mysql_standalone
+	docker inspect mysql-standalone
 	```
 
 	The response must contain near to the beginning:  
