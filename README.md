@@ -38,7 +38,7 @@ Download this project to your preferred folder.
 	```
 	And close to the end must contain an "IPAddress" not empty
 	```
-		"IPAddress": "172.17.0.2",
+		"IPAddress": "xxx.xx.x.x",
 	```
 
 	Start the noteApp container:
